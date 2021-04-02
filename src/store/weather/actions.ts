@@ -8,6 +8,7 @@ const API_KEY = "05b74c16ea7a4df39d05d7bc4cb2ddf8";
 export const fetchWeatherLocation = (
   currentLocation: LongLatLocation
 ) => async (dispatch: Dispatch, getState: () => ReduxState) => {
+  console.log(currentLocation);
   try {
     const res = await axios.get(
       `${API_URL}/current/?lat=${currentLocation.lattitude}&lon=${currentLocation.longtitude}&key=${API_KEY}`

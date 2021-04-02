@@ -6,6 +6,7 @@ import cities from "../../data/cities.json";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import LocationButton from "../../components/LocationBtn/LocationBtn";
+import LocationInput from "../../components/LocationInput/LocationInput";
 
 type Cities = {
   city_id: number;
@@ -16,46 +17,18 @@ type Cities = {
   lon: number;
 };
 
-type ChosenCities = {
-  city: "";
-  country: "";
-};
-
 export default function HomePage() {
   const dispatch = useDispatch();
   const [currentLocation, setCurrentLocation] = useState({
     lattitude: "",
     longtitude: "",
   });
-  const [city, setCity] = useState("");
-  const [chosenCities, setChosenCities] = useState<Cities[]>([]);
 
   useEffect(() => {
     if (currentLocation.lattitude && currentLocation.longtitude) {
       dispatch(fetchWeatherLocation(currentLocation));
     }
   }, [currentLocation, dispatch]);
-
-  const formSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const cityNames = cities.filter((item: any) => {
-      return item.city_name === city;
-    });
-    console.log(cityNames);
-    if (!cityNames.length) {
-      alert("Cannot find the match with the typed city name");
-    } else if (cityNames.length === 1) {
-      setCurrentLocation({
-        lattitude: cityNames[0].lat.toString(),
-        longtitude: cityNames[0].lon.toString(),
-      });
-      dispatch(fetchWeatherLocation(currentLocation));
-    } else {
-      setChosenCities(cityNames);
-    }
-  };
-  // console.log("chosenCities", chosenCities);
-  // console.log("currentLocation", currentLocation);
 
   return (
     <div>
@@ -71,52 +44,12 @@ export default function HomePage() {
             <div className="text-white">
               <h2 className="mb-3">Welcome to Weather && Clothes</h2>
               <LocationButton data="current" />
-              {/* <Form.Group className="mb-3" onSubmit={() => formSubmit}>
-                <Form.Control
-                  type="text"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  placeholder="Find the weather by entering the city name"
-                />
-                <Button variant="secondary" type="submit">
-                  Search
-                </Button>
-              </Form.Group> */}
+              {/* <LocationInput /> */}
             </div>
           </div>
         </div>
       </div>
-      <form onSubmit={formSubmit}>
-        <label>Find the weather by city name:</label>
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
-      {chosenCities.length ? (
-        <div>
-          Choose the city from below list:
-          {chosenCities.map((city) => (
-            <button
-              key={city.city_id}
-              onClick={() => {
-                setCurrentLocation({
-                  lattitude: city.lat.toString(),
-                  longtitude: city.lon.toString(),
-                });
-                setChosenCities([]);
-                setCity("");
-              }}
-            >
-              {city.city_name}, {city.country_code}
-            </button>
-          ))}
-        </div>
-      ) : (
-        <p></p>
-      )}
+      <LocationInput />
       <WeatherToday />
     </div>
   );

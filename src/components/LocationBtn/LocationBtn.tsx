@@ -11,7 +11,6 @@ type Props = {
 };
 
 export default function LocationButton(props: Props) {
-  console.log(props.data);
   const dispatch = useDispatch();
   const [currentLocation, setCurrentLocation] = useState({
     lattitude: "",
@@ -40,7 +39,7 @@ export default function LocationButton(props: Props) {
     ) {
       dispatch(fetchForecast(currentLocation));
     }
-  }, [currentLocation, dispatch]);
+  }, [currentLocation, dispatch, props]);
 
   return (
     <Button className="mb-3" variant="info" onClick={() => clickedPlace()}>
