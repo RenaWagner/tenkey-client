@@ -1,11 +1,11 @@
 import React, { useEffect, useState, FormEvent } from "react";
 import { useDispatch } from "react-redux";
-import WeatherToday from "../components/WeatherToday";
-import { fetchWeatherLocation } from "../store/weather/actions";
-import cities from "../data/cities.json";
+import WeatherToday from "../../components/WeatherToday/WeatherToday";
+import { fetchWeatherLocation } from "../../store/weather/actions";
+import cities from "../../data/cities.json";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
-import LocationButton from "../components/LocationButton";
+import LocationButton from "../../components/LocationBtn/LocationBtn";
 
 type Cities = {
   city_id: number;
@@ -56,14 +56,6 @@ export default function HomePage() {
   };
   // console.log("chosenCities", chosenCities);
   // console.log("currentLocation", currentLocation);
-
-  const clickedPlace = () => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      const lat = position.coords.latitude.toFixed(3);
-      const long = position.coords.longitude.toFixed(3);
-      setCurrentLocation({ lattitude: lat, longtitude: long });
-    });
-  };
 
   return (
     <div>
