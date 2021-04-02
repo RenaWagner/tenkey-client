@@ -12,7 +12,9 @@ export default function WeatherToday() {
     <div>
       {todayWeather ? (
         <div>
-          <h4>Today: {date}</h4>
+          <h4>
+            Today: {date} in {todayWeather.city_name}
+          </h4>
           <Link to="/">
             <p>What should I wear today?</p>
           </Link>

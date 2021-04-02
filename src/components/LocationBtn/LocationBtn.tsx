@@ -43,7 +43,7 @@ export default function LocationButton(props: Props) {
 
   return (
     <Button className="mb-3" variant="info" onClick={() => clickedPlace()}>
-      Check weather at my place
+      Check weather at my location
     </Button>
   );
 }

@@ -1,35 +1,9 @@
-import React, { useEffect, useState, FormEvent } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import WeatherToday from "../../components/WeatherToday/WeatherToday";
-import { fetchWeatherLocation } from "../../store/weather/actions";
-import cities from "../../data/cities.json";
-import { Button } from "react-bootstrap";
-import { Form } from "react-bootstrap";
 import LocationButton from "../../components/LocationBtn/LocationBtn";
 import LocationInput from "../../components/LocationInput/LocationInput";
 
-type Cities = {
-  city_id: number;
-  city_name: string;
-  state_code: string;
-  country_code: string;
-  lat: number;
-  lon: number;
-};
-
 export default function HomePage() {
-  const dispatch = useDispatch();
-  const [currentLocation, setCurrentLocation] = useState({
-    lattitude: "",
-    longtitude: "",
-  });
-
-  useEffect(() => {
-    if (currentLocation.lattitude && currentLocation.longtitude) {
-      dispatch(fetchWeatherLocation(currentLocation));
-    }
-  }, [currentLocation, dispatch]);
-
   return (
     <div>
       <div
@@ -44,12 +18,11 @@ export default function HomePage() {
             <div className="text-white">
               <h2 className="mb-3">Welcome to Weather && Clothes</h2>
               <LocationButton data="current" />
-              {/* <LocationInput /> */}
+              <LocationInput />
             </div>
           </div>
         </div>
       </div>
-      <LocationInput />
       <WeatherToday />
     </div>
   );

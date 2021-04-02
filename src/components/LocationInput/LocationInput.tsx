@@ -1,6 +1,8 @@
-import React, { FormEvent, useState, useEffect } from "react";
+import React, { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import cities from "../../data/cities.json";
+import { Button, Col } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { fetchWeatherLocation } from "../../store/weather/actions";
 
 type Cities = {
@@ -23,6 +25,7 @@ export default function LocationInput() {
 
   const formSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    // console.log("submitted!");
     const cityNames = cities.filter((item: any) => {
       return item.city_name === city;
     });
@@ -41,27 +44,27 @@ export default function LocationInput() {
   };
 
   return (
-    <div>
-      {/* <Form.Group className="mb-3" onSubmit={() => formSubmit}>
-                <Form.Control
-                  type="text"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  placeholder="Find the weather by entering the city name"
-                />
-                <Button variant="secondary" type="submit">
-                  Search
-                </Button>
-              </Form.Group> */}
-      <form onSubmit={formSubmit}>
-        <label>Find the weather by city name:</label>
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
+    <div className="mt-5">
+      <Form onSubmit={formSubmit} className="mx-auto">
+        <Form.Row className="align-items-center">
+          <Col sm={6}>
+            <Form.Label htmlFor="inlineFormInput" srOnly>
+              Search by the city name:
+            </Form.Label>
+            <Form.Control
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              placeholder="Find the weather by entering the city name"
+            />
+          </Col>
+          <Col xs="auto">
+            <Button variant="secondary" type="submit">
+              Submit
+            </Button>
+          </Col>
+        </Form.Row>
+      </Form>
       {chosenCities.length ? (
         <div>
           Choose the city from below list:
@@ -75,7 +78,9 @@ export default function LocationInput() {
                 });
                 setChosenCities([]);
                 setCity("");
-                dispatch(fetchWeatherLocation(currentLocation));
+                setTimeout(() => {
+                  dispatch(fetchWeatherLocation(currentLocation));
+                }, 2000);
               }}
             >
               {city.city_name}, {city.country_code}
