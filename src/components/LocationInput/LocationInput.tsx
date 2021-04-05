@@ -45,8 +45,8 @@ export default function LocationInput() {
 
   return (
     <div className="mt-5">
-      <Form onSubmit={formSubmit} className="mx-auto">
-        <Form.Row className="align-items-center">
+      <Form onSubmit={formSubmit}>
+        <Form.Row>
           <Col sm={6}>
             <Form.Label htmlFor="inlineFormInput" srOnly>
               Search by the city name:
