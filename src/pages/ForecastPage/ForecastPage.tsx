@@ -70,7 +70,7 @@ export default function ForecastPage() {
 
   return (
     <div>
-      <p>16 days Forecast Page</p>
+      <h2 className="mt-5">16days Forecast</h2>
       <ResponsiveContainer width="100%" height={700}>
         <ComposedChart
           data={data}
