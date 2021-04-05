@@ -29,11 +29,11 @@ export default function LocationInput() {
 
   const formSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // console.log("submitted!");
     const cityNames = cities.filter((item: any) => {
       return item.city_name === city;
     });
 
+    console.log(cityNames);
     if (!cityNames.length) {
       alert("Cannot find the match with the typed city name");
     } else if (cityNames.length === 1) {
@@ -76,6 +76,7 @@ export default function LocationInput() {
             <Link to="weatherToday" smooth={true} key={city.city_id}>
               <button
                 className="btn btn-light mr-2"
+                style={{ height: 37.986 }}
                 onClick={() => {
                   setCurrentLocation({
                     lattitude: city.lat.toString(),
@@ -84,13 +85,20 @@ export default function LocationInput() {
                   setChosenCities([]);
                   setCity("");
                   dispatch(weatherLoading());
-                  dispatch(fetchWeatherLocation(currentLocation));
-                  // setTimeout(() => {
-                  //   dispatch(fetchWeatherLocation(currentLocation));
-                  // }, 2000);
+                  setTimeout(() => {
+                    dispatch(fetchWeatherLocation(currentLocation));
+                  }, 2000);
                 }}
               >
-                {city.city_name}, {city.country_code}
+                {city.country_code === "US" ? (
+                  <p>
+                    {city.city_name}, {city.state_code}, {city.country_code}
+                  </p>
+                ) : (
+                  <p>
+                    {city.city_name}, {city.country_code}
+                  </p>
+                )}
               </button>
             </Link>
           ))}
