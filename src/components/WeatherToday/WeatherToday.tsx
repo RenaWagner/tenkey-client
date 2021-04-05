@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { selectTodayWeather } from "../../store/weather/selectors";
@@ -26,6 +27,11 @@ export default function WeatherToday() {
           <h5>
             Wind: {todayWeather.wind_cdir} {todayWeather.wind_spd.toFixed(1)}m/s
           </h5>
+          <Link to="/forecast">
+            <Button className="mb-3" variant="info">
+              Check the weekly forecast of this location
+            </Button>
+          </Link>
         </div>
       ) : (
         <p></p>

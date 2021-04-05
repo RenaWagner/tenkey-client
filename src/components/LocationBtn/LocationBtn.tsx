@@ -42,8 +42,10 @@ export default function LocationButton(props: Props) {
   }, [currentLocation, dispatch, props]);
 
   return (
-    <Button className="mb-3" variant="info" onClick={() => clickedPlace()}>
-      Check weather at my location
-    </Button>
+    <div>
+      <Button className="mb-3" variant="info" onClick={() => clickedPlace()}>
+        Check weather at my location
+      </Button>
+    </div>
   );
 }
