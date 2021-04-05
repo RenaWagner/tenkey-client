@@ -55,7 +55,7 @@ export default function LocationInput() {
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              placeholder="Find the weather by entering the city name"
+              placeholder="Find the weather"
             />
           </Col>
           <Col xs="auto">

@@ -86,6 +86,9 @@ export type WeatherInner = {
 
 export type WeatherAction =
   | {
+      type: "weather/loading";
+    }
+  | {
       type: "weather/fetch";
       payload: Weather[];
     }
