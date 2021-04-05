@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 function App() {
   return (
     <div className="App">
-      <NavBar></NavBar>
+      <NavBar />
       <Switch>
         <Route exact path="/" component={HomePage} />
       </Switch>
