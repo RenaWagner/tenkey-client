@@ -3,7 +3,11 @@ import { useDispatch } from "react-redux";
 import cities from "../../data/cities.json";
 import { Button, Col } from "react-bootstrap";
 import { Form } from "react-bootstrap";
-import { fetchWeatherLocation } from "../../store/weather/actions";
+import {
+  fetchWeatherLocation,
+  weatherLoading,
+} from "../../store/weather/actions";
+import { Link } from "react-scroll";
 
 type Cities = {
   city_id: number;
@@ -25,11 +29,11 @@ export default function LocationInput() {
 
   const formSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // console.log("submitted!");
     const cityNames = cities.filter((item: any) => {
       return item.city_name === city;
     });
 
+    console.log(cityNames);
     if (!cityNames.length) {
       alert("Cannot find the match with the typed city name");
     } else if (cityNames.length === 1) {
@@ -44,10 +48,10 @@ export default function LocationInput() {
   };
 
   return (
-    <div className="mt-5">
-      <Form onSubmit={formSubmit} className="mx-auto">
-        <Form.Row className="align-items-center">
-          <Col sm={6}>
+    <div className="mt-2 d-flex justify-content-center align-items-center container">
+      <Form onSubmit={formSubmit}>
+        <Form.Row>
+          <Col sm={8}>
             <Form.Label htmlFor="inlineFormInput" srOnly>
               Search by the city name:
             </Form.Label>
@@ -55,7 +59,7 @@ export default function LocationInput() {
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              placeholder="Find the weather by entering the city name"
+              placeholder="Find the weather"
             />
           </Col>
           <Col xs="auto">
@@ -67,24 +71,36 @@ export default function LocationInput() {
       </Form>
       {chosenCities.length ? (
         <div>
-          Choose the city from below list:
+          Choose the city:{" "}
           {chosenCities.map((city) => (
-            <button
-              key={city.city_id}
-              onClick={() => {
-                setCurrentLocation({
-                  lattitude: city.lat.toString(),
-                  longtitude: city.lon.toString(),
-                });
-                setChosenCities([]);
-                setCity("");
-                setTimeout(() => {
-                  dispatch(fetchWeatherLocation(currentLocation));
-                }, 2000);
-              }}
-            >
-              {city.city_name}, {city.country_code}
-            </button>
+            <Link to="weatherToday" smooth={true} key={city.city_id}>
+              <button
+                className="btn btn-light mr-2"
+                style={{ height: 37.986 }}
+                onClick={() => {
+                  setCurrentLocation({
+                    lattitude: city.lat.toString(),
+                    longtitude: city.lon.toString(),
+                  });
+                  setChosenCities([]);
+                  setCity("");
+                  dispatch(weatherLoading());
+                  setTimeout(() => {
+                    dispatch(fetchWeatherLocation(currentLocation));
+                  }, 2000);
+                }}
+              >
+                {city.country_code === "US" ? (
+                  <p>
+                    {city.city_name}, {city.state_code}, {city.country_code}
+                  </p>
+                ) : (
+                  <p>
+                    {city.city_name}, {city.country_code}
+                  </p>
+                )}
+              </button>
+            </Link>
           ))}
         </div>
       ) : (

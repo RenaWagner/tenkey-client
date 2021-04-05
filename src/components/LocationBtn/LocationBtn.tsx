@@ -4,13 +4,11 @@ import { useDispatch } from "react-redux";
 import {
   fetchForecast,
   fetchWeatherLocation,
+  weatherLoading,
 } from "../../store/weather/actions";
+import { Link } from "react-scroll";
 
-type Props = {
-  data: string;
-};
-
-export default function LocationButton(props: Props) {
+export default function LocationButton() {
   const dispatch = useDispatch();
   const [currentLocation, setCurrentLocation] = useState({
     lattitude: "",
@@ -26,26 +24,25 @@ export default function LocationButton(props: Props) {
   };
 
   useEffect(() => {
-    if (
-      currentLocation.lattitude &&
-      currentLocation.longtitude &&
-      props.data === "current"
-    ) {
+    if (currentLocation.lattitude && currentLocation.longtitude) {
       dispatch(fetchWeatherLocation(currentLocation));
-    } else if (
-      currentLocation.lattitude &&
-      currentLocation.longtitude &&
-      props.data === "forecast"
-    ) {
-      dispatch(fetchForecast(currentLocation));
     }
-  }, [currentLocation, dispatch, props]);
+  }, [currentLocation, dispatch]);
 
   return (
     <div>
-      <Button className="mb-3" variant="info" onClick={() => clickedPlace()}>
-        Check weather at my location
-      </Button>
+      <Link to="weatherToday" smooth={true}>
+        <Button
+          className="mb-3"
+          variant="info"
+          onClick={() => {
+            dispatch(weatherLoading());
+            clickedPlace();
+          }}
+        >
+          Check weather at my location
+        </Button>
+      </Link>
     </div>
   );
 }

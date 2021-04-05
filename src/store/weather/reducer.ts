@@ -1,7 +1,7 @@
 import { WeatherAction } from "./types";
 
 const initialState: any = {
-  loading: true,
+  loading: false,
   location: { lattitude: 0, longtitude: 0 },
   todayWeather: [],
   forecast: [],
@@ -12,6 +12,12 @@ export default function reducer(
   action: WeatherAction
 ): any {
   switch (action.type) {
+    case "weather/loading": {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
     case "weather/fetch": {
       return {
         ...state,

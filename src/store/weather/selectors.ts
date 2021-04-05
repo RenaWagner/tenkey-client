@@ -8,3 +8,6 @@ export const selectLocation = (reduxState: ReduxState) =>
 
 export const selectForecast = (reduxState: ReduxState) =>
   reduxState.weather.forecast;
+
+export const selectLoading = (reduxState: ReduxState) =>
+  reduxState.weather.loading;
