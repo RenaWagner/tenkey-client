@@ -23,6 +23,13 @@ export default function reducer(
         todayWeather: action.payload,
       };
     }
+    case "weatherForecast/fetch": {
+      return {
+        ...state,
+        loading: false,
+        forecast: action.payload,
+      };
+    }
     default: {
       return state;
     }
