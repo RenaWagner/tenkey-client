@@ -21,14 +21,14 @@ export default function NavBar() {
             >
               Home
             </Nav.Link>
-            <Nav.Link
+            {/* <Nav.Link
               activeStyle={{ fontWeight: "bold" }}
               as={NavLink}
               to="/forecast"
               exact
             >
               Weekly Forecast
-            </Nav.Link>
+            </Nav.Link> */}
           </Nav.Item>
           {/* {loginLogoutControls} */}
         </Nav>

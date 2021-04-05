@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 import { ReduxState } from "..";
-import { LongLatLocation, Weather } from "./types";
+import { LongLatLocation, Weather, WeatherForecast } from "./types";
 const API_URL = `http://api.weatherbit.io/v2.0`;
 const API_KEY = "05b74c16ea7a4df39d05d7bc4cb2ddf8";
 
@@ -13,7 +13,6 @@ export const fetchWeatherLocation = (
     const res = await axios.get(
       `${API_URL}/current/?lat=${currentLocation.lattitude}&lon=${currentLocation.longtitude}&key=${API_KEY}`
     );
-    console.log(res.data.data);
     dispatch(fetchedWeatherData(res.data.data));
   } catch (e) {
     console.log(e);
@@ -33,9 +32,13 @@ export const fetchForecast = (currentLocation: LongLatLocation) => async (
     const res = await axios.get(
       `${API_URL}/forecast/daily?lat=${currentLocation.lattitude}&lon=${currentLocation.longtitude}&key=${API_KEY}`
     );
-    console.log(res.data.data);
-    // dispatch(fetchedWeatherData(res.data.data));
+    dispatch(fetchedForecastData(res.data.data));
   } catch (e) {
     console.log(e);
   }
 };
+
+export const fetchedForecastData = (data: WeatherForecast[]) => ({
+  type: "weatherForecast/fetch",
+  payload: data,
+});

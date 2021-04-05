@@ -5,3 +5,6 @@ export const selectTodayWeather = (reduxState: ReduxState) =>
 
 export const selectLocation = (reduxState: ReduxState) =>
   reduxState.weather.location;
+
+export const selectForecast = (reduxState: ReduxState) =>
+  reduxState.weather.forecast;

@@ -2,7 +2,7 @@ import { WeatherAction } from "./types";
 
 const initialState: any = {
   loading: true,
-  location: { lat: 0, lon: 0 },
+  location: { lattitude: 0, longtitude: 0 },
   todayWeather: [],
   forecast: [],
 };
@@ -16,8 +16,18 @@ export default function reducer(
       return {
         ...state,
         loading: false,
-        location: { lat: action.payload[0].lat, lon: action.payload[0].lon },
+        location: {
+          lattitude: action.payload[0].lat,
+          longtitude: action.payload[0].lon,
+        },
         todayWeather: action.payload,
+      };
+    }
+    case "weatherForecast/fetch": {
+      return {
+        ...state,
+        loading: false,
+        forecast: action.payload,
       };
     }
     default: {
