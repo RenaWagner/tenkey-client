@@ -17,26 +17,27 @@ import {
   LabelList,
 } from "recharts";
 
-type Props = {
-  x: number;
-  y: number;
-  width: number;
-  value: number;
-};
-
-function CustomXAxisLabel(props: any) {
-  console.log(props.payload.value);
+function XAxisWeather(props: any) {
   return (
     <g transform={`translate(${props.x},${props.y})`}>
       <image
         xlinkHref={`https://www.weatherbit.io/static/img/icons/${props.payload.value}.png`}
-        x={0}
+        x={-25}
         y={0}
-        height="31px"
-        width="88px"
+        height="50px"
         textAnchor="middle"
         fill="#666"
       />
+    </g>
+  );
+}
+
+function XAxisDate(props: any) {
+  return (
+    <g transform={`translate(${props.x},${props.y})`}>
+      <text dy={16} textAnchor="middle" fill="#666">
+        {props.payload.value}
+      </text>
     </g>
   );
 }
@@ -70,64 +71,82 @@ export default function ForecastPage() {
   return (
     <div>
       <p>16 days Forecast Page</p>
-      <ComposedChart
-        width={1500}
-        height={400}
-        data={data}
-        margin={{
-          top: 20,
-          right: 20,
-          bottom: 20,
-          left: 20,
-        }}
-      >
-        <CartesianGrid stroke="#f5f5f5" />
-        <XAxis dataKey="datetime" scale="band" xAxisId={0} />
-        <XAxis
-          dataKey="weather_icon"
-          axisLine={false}
-          tickLine={false}
-          xAxisId={1}
-          interval={0}
-          tick={<CustomXAxisLabel />}
-        />
-        <YAxis
-          type="number"
-          domain={["auto", "auto"]}
-          yAxisId={0}
-          label={{ value: "°C", position: "top" }}
-        />
-        <YAxis orientation="right" yAxisId={1} domain={[0, 20]} />
-        <Tooltip />
-        <Legend verticalAlign="top" height={36} />
-        <Bar
-          name="Precipitation (mm)"
-          dataKey="precip"
-          barSize={20}
-          fill="#413ea0"
-          yAxisId={1}
+      <ResponsiveContainer width="100%" height={700}>
+        <ComposedChart
+          data={data}
+          margin={{
+            top: 20,
+            right: 20,
+            bottom: 20,
+            left: 20,
+          }}
         >
-          <LabelList dataKey="precip" position="top" />
-        </Bar>
-        <Line
-          name="Max Temp(°C)"
-          dataKey="max_temp"
-          stroke="#ff6600"
-          strokeWidth={2}
-          yAxisId={0}
-        >
-          <LabelList dataKey="max_temp" position="top" />
-        </Line>
-        <Line
-          name="Min Temp(°C)"
-          dataKey="min_temp"
-          stroke="#45b6fe"
-          strokeWidth={2}
-          yAxisId={0}
-        >
-          <LabelList dataKey="min_temp" position="top" />
-        </Line>
-      </ComposedChart>
+          <CartesianGrid stroke="#f5f5f5" />
+          <XAxis
+            dataKey="datetime"
+            scale="band"
+            xAxisId={0}
+            tick={<XAxisDate />}
+          />
+          <XAxis
+            dataKey="weather_icon"
+            axisLine={false}
+            tickLine={false}
+            xAxisId={1}
+            interval={0}
+            tick={<XAxisWeather />}
+          />
+          <YAxis
+            type="number"
+            domain={["auto", "auto"]}
+            yAxisId={0}
+            label={{
+              value: "(°C)",
+              position: "insideTopLeft",
+            }}
+            allowDecimals={false}
+          ></YAxis>
+          <YAxis
+            orientation="right"
+            yAxisId={1}
+            domain={[0, 20]}
+            label={{
+              value: "(mm)",
+              position: "insideTopRight",
+            }}
+            allowDecimals={false}
+          />
+          <Tooltip />
+          <Legend verticalAlign="top" height={36} />
+          <Bar
+            name="Precipitation (mm)"
+            dataKey="precip"
+            barSize={20}
+            fill="#413ea0"
+            yAxisId={1}
+          >
+            <LabelList dataKey="precip" position="top" />
+          </Bar>
+          <Line
+            name="Max Temp(°C)"
+            dataKey="max_temp"
+            stroke="#ff6600"
+            strokeWidth={2}
+            yAxisId={0}
+          >
+            <LabelList dataKey="max_temp" position="top" offset={15} />
+          </Line>
+          <Line
+            name="Min Temp(°C)"
+            dataKey="min_temp"
+            stroke="#45b6fe"
+            strokeWidth={2}
+            yAxisId={0}
+          >
+            <LabelList dataKey="min_temp" position="top" offset={15} />
+          </Line>
+        </ComposedChart>
+      </ResponsiveContainer>
     </div>
   );
 }
