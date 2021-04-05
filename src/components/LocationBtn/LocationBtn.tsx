@@ -4,7 +4,9 @@ import { useDispatch } from "react-redux";
 import {
   fetchForecast,
   fetchWeatherLocation,
+  weatherLoading,
 } from "../../store/weather/actions";
+import { Link } from "react-scroll";
 
 export default function LocationButton() {
   const dispatch = useDispatch();
@@ -29,9 +31,18 @@ export default function LocationButton() {
 
   return (
     <div>
-      <Button className="mb-3" variant="info" onClick={() => clickedPlace()}>
-        Check weather at my location
-      </Button>
+      <Link to="weatherToday" smooth={true}>
+        <Button
+          className="mb-3"
+          variant="info"
+          onClick={() => {
+            dispatch(weatherLoading());
+            clickedPlace();
+          }}
+        >
+          Check weather at my location
+        </Button>
+      </Link>
     </div>
   );
 }

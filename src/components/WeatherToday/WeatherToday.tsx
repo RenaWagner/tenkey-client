@@ -1,5 +1,11 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Spinner,
+} from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -14,39 +20,57 @@ export default function WeatherToday() {
   const isLoading = useSelector(selectLoading);
 
   return (
-    <div>
+    <div id="weatherToday">
       {isLoading ? (
-        <div className="d-flex justify-content-center mt-5">
-          <div className="spinner-border text-dark" role="status">
+        <div
+          className="d-flex justify-content-center align-items-center mt-5"
+          style={{ height: 700, margin: "auto" }}
+        >
+          <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
-          </div>
+          </Spinner>
         </div>
       ) : (
         <p></p>
       )}
       {todayWeather ? (
-        <div>
-          <h4 className="mt-5">
-            Today: {date} in {todayWeather.city_name}
-          </h4>
-          <Link to="/">
-            <p>What should I wear today?</p>
-          </Link>
-          <img
-            src={`https://www.weatherbit.io/static/img/icons/${todayWeather.weather.icon}.png`}
-            alt="Weather background"
-          />
-          <h5>Temperature: {todayWeather.temp}°C</h5>
-          <h6>Feeling Temperature: {todayWeather.app_temp}°C</h6>
-          <h5 className="mt-3">Rain: {todayWeather.precip}mm/hr</h5>
-          <h5>
-            Wind: {todayWeather.wind_cdir} {todayWeather.wind_spd.toFixed(1)}m/s
-          </h5>
-          <Link to="/forecast">
-            <Button className="mb-3" variant="info">
-              Check the weekly forecast of this location
-            </Button>
-          </Link>
+        <div
+          className="d-flex justify-content-center mt-5"
+          style={{ width: "70%", margin: "auto" }}
+        >
+          <Card className="text-center">
+            <Card.Header>Today's Weather</Card.Header>
+            <Card.Body>
+              <Card.Title>{todayWeather.city_name}</Card.Title>
+              <Link to="/">
+                <Button className="mt-5" variant="warning">
+                  What should I wear today?
+                </Button>
+              </Link>
+              <Card.Img
+                src={`https://www.weatherbit.io/static/img/icons/${todayWeather.weather.icon}.png`}
+                alt="Weather background"
+              />
+              <ListGroup className="list-group-flush">
+                <ListGroupItem>
+                  Temperature: {todayWeather.temp}°C
+                </ListGroupItem>
+                <ListGroupItem>
+                  Feeling Temperature: {todayWeather.app_temp}°C
+                </ListGroupItem>
+                <ListGroupItem>Rain: {todayWeather.precip}mm/hr</ListGroupItem>
+                <ListGroupItem>
+                  Wind: {todayWeather.wind_cdir}{" "}
+                  {todayWeather.wind_spd.toFixed(1)}m/s
+                </ListGroupItem>
+              </ListGroup>
+              <Link to="/forecast">
+                <Button className="mb-3" variant="info">
+                  Check the weekly forecast of this location
+                </Button>
+              </Link>
+            </Card.Body>
+          </Card>
         </div>
       ) : (
         <p></p>
