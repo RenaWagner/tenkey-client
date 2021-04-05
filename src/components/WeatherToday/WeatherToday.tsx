@@ -20,7 +20,7 @@ export default function WeatherToday() {
             <p>What should I wear today?</p>
           </Link>
           <img
-            src={` https://www.weatherbit.io/static/img/icons/${todayWeather.weather.icon}.png`}
+            src={`https://www.weatherbit.io/static/img/icons/${todayWeather.weather.icon}.png`}
             alt="Weather background"
           />
           <h5>Rain: {todayWeather.precip}mm/hr</h5>

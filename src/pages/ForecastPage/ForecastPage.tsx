@@ -24,6 +24,23 @@ type Props = {
   value: number;
 };
 
+function CustomXAxisLabel(props: any) {
+  console.log(props.payload.value);
+  return (
+    <g transform={`translate(${props.x},${props.y})`}>
+      <image
+        xlinkHref={`https://www.weatherbit.io/static/img/icons/${props.payload.value}.png`}
+        x={0}
+        y={0}
+        height="31px"
+        width="88px"
+        textAnchor="middle"
+        fill="#666"
+      />
+    </g>
+  );
+}
+
 export default function ForecastPage() {
   const dispatch = useDispatch();
   const location = useSelector(selectLocation);
@@ -33,7 +50,6 @@ export default function ForecastPage() {
   }, [dispatch]);
 
   const forecastData = useSelector(selectForecast);
-  console.log(forecastData);
 
   const data = forecastData.map((data: WeatherForecast) => {
     const splitDate = data.datetime.split("-");
@@ -53,9 +69,9 @@ export default function ForecastPage() {
 
   return (
     <div>
-      <p>Forecast Page</p>
+      <p>16 days Forecast Page</p>
       <ComposedChart
-        width={1000}
+        width={1500}
         height={400}
         data={data}
         margin={{
@@ -68,10 +84,12 @@ export default function ForecastPage() {
         <CartesianGrid stroke="#f5f5f5" />
         <XAxis dataKey="datetime" scale="band" xAxisId={0} />
         <XAxis
-          dataKey="weather_desc"
+          dataKey="weather_icon"
           axisLine={false}
           tickLine={false}
           xAxisId={1}
+          interval={0}
+          tick={<CustomXAxisLabel />}
         />
         <YAxis
           type="number"
@@ -81,7 +99,7 @@ export default function ForecastPage() {
         />
         <YAxis orientation="right" yAxisId={1} domain={[0, 20]} />
         <Tooltip />
-        <Legend />
+        <Legend verticalAlign="top" height={36} />
         <Bar
           name="Precipitation (mm)"
           dataKey="precip"
