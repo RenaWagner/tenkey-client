@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import ForecastPage from "./pages/ForecastPage/ForecastPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
+import StylePage from "./pages/StylePage/StylePage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/forecast" component={ForecastPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignupPage} />
+        <Route path="/style" component={StylePage} />
       </Switch>
     </div>
   );

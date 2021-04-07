@@ -27,7 +27,14 @@ export default function NavBar() {
               to="/"
               exact
             >
-              Home
+              Today's Weather
+            </Nav.Link>
+            <Nav.Link
+              activeStyle={{ fontWeight: "bold" }}
+              as={NavLink}
+              to="/style"
+            >
+              Today's Style
             </Nav.Link>
             {isLoggedIn ? (
               <Button onClick={() => dispatch(logout())}>Logout</Button>
