@@ -78,16 +78,15 @@ export default function LocationInput() {
                 className="btn btn-light mr-2"
                 style={{ height: 37.986 }}
                 onClick={() => {
-                  setCurrentLocation({
+                  const location = {
                     lattitude: city.lat.toString(),
                     longtitude: city.lon.toString(),
-                  });
+                  };
+                  setCurrentLocation(location);
                   setChosenCities([]);
                   setCity("");
                   dispatch(weatherLoading());
-                  setTimeout(() => {
-                    dispatch(fetchWeatherLocation(currentLocation));
-                  }, 2000);
+                  dispatch(fetchWeatherLocation(location));
                 }}
               >
                 {city.country_code === "US" ? (
