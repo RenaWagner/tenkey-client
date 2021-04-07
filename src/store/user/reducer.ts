@@ -22,6 +22,14 @@ export default function reducer(state = initialState, action: UserAction): any {
         token: action.payload.token,
       };
     }
+    case "user/logout": {
+      return {
+        ...state,
+        loading: false,
+        userInfo: [],
+        token: "",
+      };
+    }
     default: {
       return state;
     }

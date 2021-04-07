@@ -5,11 +5,10 @@ export type UserAction =
   | {
       type: "user/login";
       payload: UserData;
+    }
+  | {
+      type: "user/logout";
     };
-//   | {
-//       type: "weatherForecast/fetch";
-//       payload: WeatherForecast[];
-//     };
 
 export type UserData = {
   clothingType: string;

@@ -1,9 +1,10 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { login } from "../../store/user/actions";
+import { selectUserToken } from "../../store/user/selectors";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -15,6 +16,14 @@ export default function LoginPage() {
     event.preventDefault();
     dispatch(login(email, password, history));
   };
+
+  const isLoggedIn = useSelector(selectUserToken);
+
+  useEffect(() => {
+    if (isLoggedIn !== "") {
+      history.push("/");
+    }
+  }, [isLoggedIn, history]);
 
   return (
     <div className="mt-2 d-flex justify-content-center align-items-center">
