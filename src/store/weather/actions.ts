@@ -15,7 +15,7 @@ export const fetchWeatherLocation = (
     );
     dispatch(fetchedWeatherData(res.data.data));
   } catch (e) {
-    console.log(e);
+    console.log(e.message);
   }
 };
 
@@ -35,7 +35,7 @@ export const fetchForecast = (currentLocation: LongLatLocation) => async (
     );
     dispatch(fetchedForecastData(res.data.data));
   } catch (e) {
-    console.log(e);
+    console.log(e.message);
   }
 };
 
