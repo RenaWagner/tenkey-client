@@ -1,8 +1,10 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useEffect } from "react";
 import { Form, Col, Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { signup } from "../../store/user/actions";
+import { selectUserToken } from "../../store/user/selectors";
 
 export default function SignupPage() {
   const dispatch = useDispatch();
@@ -16,10 +18,18 @@ export default function SignupPage() {
     sensitiveness: "",
   });
 
+  const isLoggedIn = useSelector(selectUserToken);
+
   const formSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(signup(data, history));
   };
+
+  useEffect(() => {
+    if (isLoggedIn !== "") {
+      history.push("/");
+    }
+  }, [isLoggedIn, history]);
 
   return (
     <div className="mt-2 d-flex justify-content-center align-items-center">
@@ -84,6 +94,10 @@ export default function SignupPage() {
             <option value="cold">Sensitive to Cold</option>
           </Form.Control>
         </Form.Group>
+        <Link to="/login">
+          If you already have an account, log in from here
+        </Link>
+        <br></br>
         <Button variant="primary" type="submit">
           Submit
         </Button>
