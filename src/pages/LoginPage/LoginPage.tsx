@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { login } from "../../store/user/actions";
 
 export default function LoginPage() {
@@ -44,6 +45,10 @@ export default function LoginPage() {
             />
           </Col>
         </Form.Group>
+        <Link to="/signup">
+          If you do not have an account yet, sign up here.
+        </Link>
+        <br></br>
         <Button type="submit">Log in</Button>
       </Form>
     </div>

@@ -28,3 +28,12 @@ export type UserState = {
   userInfo: UserData[];
   token: string;
 };
+
+export type UserInputData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  type: string;
+  sensitiveness: string;
+};
