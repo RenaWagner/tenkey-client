@@ -62,3 +62,7 @@ export const signup = (data: UserInputData, history: any) => {
     }
   };
 };
+
+export const logout = () => ({
+  type: "user/logout",
+});
