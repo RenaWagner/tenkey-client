@@ -12,10 +12,11 @@ export const login = (email: string, password: string, history: any) => {
         email,
         password,
       });
-      console.log(response.data);
 
       dispatch(loginSuccess(response.data));
+      const { jwt } = response.data;
       history.push("/");
+      localStorage.setItem("jwt", jwt);
       // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       // dispatch(appDoneLoading());
     } catch (error) {
@@ -54,6 +55,8 @@ export const signup = (data: UserInputData, history: any) => {
         sensitiveness,
       });
       dispatch(loginSuccess(response.data));
+      // const { jwt } = response.data;
+      // localStorage.setItem("jwt", jwt);
       history.push("/");
       // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       // dispatch(appDoneLoading());
@@ -63,6 +66,19 @@ export const signup = (data: UserInputData, history: any) => {
   };
 };
 
-export const logout = () => ({
-  type: "user/logout",
-});
+export const logout = (dispatch: Dispatch, getState: () => ReduxState) => {
+  dispatch({ type: "user/logout" });
+  // localStorage.removeItem("jwt");
+};
+
+export const bootstrapLoginState = () => async (
+  dispatch: Dispatch,
+  getState: () => ReduxState
+) => {
+  const jwt = localStorage.getItem("jwt");
+
+  if (jwt) {
+    // const profile = await getProfile(jwt);
+    // dispatch(userLoggedIn(jwt, profile));
+  }
+};

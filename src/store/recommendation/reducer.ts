@@ -20,7 +20,15 @@ export default function reducer(
     case "recommendation/fetchedPublicStyles": {
       return {
         ...state,
-        publicStyles: action.payload,
+        loading: false,
+        publicStyles: [...action.payload],
+      };
+    }
+    case "recommendation/fetchedUserStyles": {
+      return {
+        ...state,
+        loading: false,
+        userStyles: [...action.payload],
       };
     }
     default: {

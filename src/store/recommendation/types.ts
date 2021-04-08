@@ -4,23 +4,12 @@ export type RecommendationAction =
     }
   | {
       type: "recommendation/fetchedPublicStyles";
-      payload: StyleData;
+      payload: StyleData[];
+    }
+  | {
+      type: "recommendation/fetchedUserStyles";
+      payload: UserStyleData[];
     };
-//   | {
-//       type: "user/logout";
-//     };
-
-// export type UserData = {
-//   clothingType: string;
-//   createdAt: string;
-//   email: string;
-//   firstName: string;
-//   id: number;
-//   lastName: string;
-//   sensitiveness: string;
-//   token: string;
-//   updatedAt: string;
-// };
 
 export type StyleData = {
   clothingType: string;
@@ -36,4 +25,17 @@ export type RecommendationState = {
   loading: boolean;
   publicStyles: StyleData[];
   userStyles: StyleData[];
+};
+
+export type UserStyleData = {
+  comment: string;
+  createdAt: string;
+  id: number;
+  imageUrl: string;
+  maxTemp: number;
+  minTemp: number;
+  rating: number;
+  updatedAt: string;
+  userId: number;
+  wearingDate: string;
 };

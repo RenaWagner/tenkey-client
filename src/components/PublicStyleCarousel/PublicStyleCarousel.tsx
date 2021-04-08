@@ -5,11 +5,14 @@ import { StyleData } from "../../store/recommendation/types";
 type Props = {
   data: StyleData[];
 };
-export default function StyleCarousel(props: Props) {
+
+type Data = StyleData;
+
+export default function PublicStyleCarousel(props: Props) {
   return (
     <div>
       <Carousel className="mt-5">
-        {props.data.map((style: StyleData) => {
+        {props.data.map((style: Data) => {
           return (
             <Carousel.Item key={style.id}>
               <img

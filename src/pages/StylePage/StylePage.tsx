@@ -3,20 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 import LocationButton from "../../components/LocationBtn/LocationBtn";
 import LocationInput from "../../components/LocationInput/LocationInput";
 import { selectTodayWeather } from "../../store/weather/selectors";
-import { fetchPublicStyles } from "../../store/recommendation/actions";
+import {
+  fetchPublicStyles,
+  fetchUserStyle,
+  fetchPublicStyleRating,
+} from "../../store/recommendation/actions";
 import StyleCard from "../../components/StyleCard/StyleCard";
+import { selectUserToken } from "../../store/user/selectors";
 
 export default function StylePage() {
   const weatherData = useSelector(selectTodayWeather);
   const todayWeather = useSelector(selectTodayWeather);
-  const [type, setType] = useState("");
+  const isLoggedIn = useSelector(selectUserToken);
   const dispatch = useDispatch();
   //   console.log(todayWeather);
   //TODO Spinner//
   useEffect(() => {
     if (todayWeather[0]) {
       const temp = Math.round(todayWeather[0].app_temp);
-      dispatch(fetchPublicStyles(temp));
+      if (isLoggedIn !== "") {
+        dispatch(fetchUserStyle(temp));
+        dispatch(fetchPublicStyleRating(temp)); //also dispatch the one get public user style rating
+      } else {
+        dispatch(fetchPublicStyles(temp));
+      }
     }
   }, [dispatch, todayWeather]);
 

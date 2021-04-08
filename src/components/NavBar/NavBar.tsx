@@ -37,7 +37,7 @@ export default function NavBar() {
               Today's Style
             </Nav.Link>
             {isLoggedIn ? (
-              <Button onClick={() => dispatch(logout())}>Logout</Button>
+              <Button onClick={() => dispatch(logout)}>Logout</Button>
             ) : (
               <Nav.Link
                 activeStyle={{ fontWeight: "bold" }}
