@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LocationButton from "../../components/LocationBtn/LocationBtn";
 import LocationInput from "../../components/LocationInput/LocationInput";
@@ -16,7 +16,7 @@ export default function StylePage() {
   const todayWeather = useSelector(selectTodayWeather);
   const isLoggedIn = useSelector(selectUserToken);
   const dispatch = useDispatch();
-  //   console.log(todayWeather);
+
   //TODO Spinner//
   useEffect(() => {
     if (todayWeather[0]) {
@@ -34,7 +34,7 @@ export default function StylePage() {
     <div>
       {weatherData.length ? (
         <div>
-          <h4>Today's style recommendation in {todayWeather[0].city_name}</h4>
+          <h2>Today's style recommendation in {todayWeather[0].city_name}</h2>
 
           <StyleCard />
         </div>

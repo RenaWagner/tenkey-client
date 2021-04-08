@@ -5,6 +5,7 @@ import {
   selectPublicStyles,
   selectTypePublicStyles,
   selectUserStyles,
+  selectPublicStylesWithRating,
 } from "../../store/recommendation/selectors";
 import { selectUserToken } from "../../store/user/selectors";
 import PublicStyleCarousel from "../PublicStyleCarousel/PublicStyleCarousel";
@@ -16,14 +17,16 @@ export default function StyleCard() {
   const typeStyles = useSelector(selectTypePublicStyles(type));
   const userStyles = useSelector(selectUserStyles);
   const isLoggedIn = useSelector(selectUserToken);
+  const publicStyleWithRating = useSelector(selectPublicStylesWithRating);
 
   return (
     <div>
       {isLoggedIn ? (
         <div>
-          <h6>Your own styles based on today's temperature</h6>
+          <h4 className="mt-5">Your own styles based on today's temperature</h4>
           <UserStyleCarousel data={userStyles} />
-          <h6>General style recommendations</h6>
+          <h4 className="mt-5">General style recommendations</h4>
+          <UserStyleCarousel data={publicStyleWithRating} />
         </div>
       ) : (
         <div>

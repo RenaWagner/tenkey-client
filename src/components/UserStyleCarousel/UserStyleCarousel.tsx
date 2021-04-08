@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button, Carousel } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import StarRatingComponent from "react-star-rating-component";
-import { UserStyleData } from "../../store/recommendation/types";
-import { selectUserToken } from "../../store/user/selectors";
+import {
+  UserStyleData,
+  UserRatingPublicStyle,
+} from "../../store/recommendation/types";
 
 type Props = {
-  data: UserStyleData[];
+  data: UserStyleData[] | UserRatingPublicStyle[];
 };
-
-type Data = UserStyleData;
 
 export default function UserStyleCarousel(props: Props) {
   return (
     <div>
       <Carousel className="mt-5">
-        {props.data.map((style: Data) => {
+        {props.data.map((style: any) => {
           return (
             <Carousel.Item key={style.id}>
               <img
@@ -31,13 +29,24 @@ export default function UserStyleCarousel(props: Props) {
                 }}
                 className="p-5"
               >
-                <h3>Aloha</h3>
-                <StarRatingComponent
-                  name="rating"
-                  starCount={5}
-                  value={style.rating}
-                />
-                <p>{style.comment}</p>
+                {style.hasOwnProperty("rating") ? (
+                  <StarRatingComponent
+                    name="rating"
+                    starCount={5}
+                    value={style.rating}
+                  />
+                ) : (
+                  <StarRatingComponent
+                    name="rating"
+                    starCount={5}
+                    value={
+                      style.users ? style.users[0].publicstyleRatings.rating : 0
+                    }
+                  />
+                )}
+                <br></br>
+                {style.hasOwnProperty("comment") ? style.comment : <></>}
+                <br></br>
                 <Button variant="danger">Update this style</Button>
               </Carousel.Caption>
             </Carousel.Item>

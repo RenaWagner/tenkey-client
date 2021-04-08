@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 import { ReduxState } from "..";
-import { StyleData, UserStyleData } from "./types";
+import { StyleData, UserRatingPublicStyle, UserStyleData } from "./types";
 const API_URL_STYLE = `https://tenkeyapp.herokuapp.com`;
 
 export const fetchPublicStyles = (temp: number) => {
@@ -61,8 +61,8 @@ export const fetchPublicStyleRating = (temp: number) => {
       const response = await axios.get(`${API_URL_STYLE}/user/public/${temp}`, {
         headers: { Authorization: `Bearer ${jwt}` },
       });
-      //   dispatch(fetchedUserStyles(response.data));
       console.log(response.data);
+      dispatch(fetchedPublicStyleUserRating(response.data));
       // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       // dispatch(appDoneLoading());
     } catch (error) {
@@ -70,3 +70,10 @@ export const fetchPublicStyleRating = (temp: number) => {
     }
   };
 };
+
+export const fetchedPublicStyleUserRating = (
+  data: UserRatingPublicStyle[]
+) => ({
+  type: "recommendation/fetchedPubliStyleRating",
+  payload: data,
+});

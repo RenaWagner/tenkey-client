@@ -4,6 +4,7 @@ const initialState: RecommendationState = {
   loading: false,
   publicStyles: [],
   userStyles: [],
+  publicStylesRating: [],
 };
 
 export default function reducer(
@@ -29,6 +30,13 @@ export default function reducer(
         ...state,
         loading: false,
         userStyles: [...action.payload],
+      };
+    }
+    case "recommendation/fetchedPubliStyleRating": {
+      return {
+        ...state,
+        loading: false,
+        publicStylesRating: [...action.payload],
       };
     }
     default: {

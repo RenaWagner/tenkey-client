@@ -9,6 +9,10 @@ export type RecommendationAction =
   | {
       type: "recommendation/fetchedUserStyles";
       payload: UserStyleData[];
+    }
+  | {
+      type: "recommendation/fetchedPubliStyleRating";
+      payload: UserRatingPublicStyle[];
     };
 
 export type StyleData = {
@@ -24,7 +28,8 @@ export type StyleData = {
 export type RecommendationState = {
   loading: boolean;
   publicStyles: StyleData[];
-  userStyles: StyleData[];
+  userStyles: UserStyleData[];
+  publicStylesRating: UserRatingPublicStyle[];
 };
 
 export type UserStyleData = {
@@ -38,4 +43,21 @@ export type UserStyleData = {
   updatedAt: string;
   userId: number;
   wearingDate: string;
+};
+
+export type UserRatingPublicStyle = {
+  createdAt: string;
+  id: number;
+  imageUrl: string;
+  maxTemp: number;
+  minTemp: number;
+  updatedAt: string;
+  users: UserRating[];
+};
+
+export type UserRating = {
+  id: number;
+  publicstyleRating: {
+    rating: number;
+  };
 };

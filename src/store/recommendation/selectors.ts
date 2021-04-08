@@ -6,6 +6,9 @@ export const selectPublicStyles = (reduxState: ReduxState) =>
 export const selectUserStyles = (reduxState: ReduxState) =>
   reduxState.recommendation.userStyles;
 
+export const selectPublicStylesWithRating = (reduxState: ReduxState) =>
+  reduxState.recommendation.publicStylesRating;
+
 export const selectTypePublicStyles = (type: string) => (
   reduxState: ReduxState
 ) => {
