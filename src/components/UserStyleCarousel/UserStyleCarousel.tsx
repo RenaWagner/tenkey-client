@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Carousel } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
 import {
   UserStyleData,
@@ -8,6 +9,7 @@ import {
 
 type Props = {
   data: UserStyleData[] | UserRatingPublicStyle[];
+  type: string;
 };
 
 export default function UserStyleCarousel(props: Props) {
@@ -34,6 +36,7 @@ export default function UserStyleCarousel(props: Props) {
                     name="rating"
                     starCount={5}
                     value={style.rating}
+                    editing={false}
                   />
                 ) : (
                   <StarRatingComponent
@@ -47,7 +50,9 @@ export default function UserStyleCarousel(props: Props) {
                 <br></br>
                 {style.hasOwnProperty("comment") ? style.comment : <></>}
                 <br></br>
-                <Button variant="danger">Update this style</Button>
+                <Link to={`/update/${props.type}/${style.id}`}>
+                  <Button variant="danger">Update this style</Button>
+                </Link>
               </Carousel.Caption>
             </Carousel.Item>
           );

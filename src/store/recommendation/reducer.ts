@@ -39,6 +39,20 @@ export default function reducer(
         publicStylesRating: [...action.payload],
       };
     }
+    case "recommendation/updateRatingUserSytle": {
+      const updatedStyle = action.payload;
+      const updatedItem = state.userStyles.map((style) => {
+        if (style.id === updatedStyle.styleToUpdate.id) {
+          return updatedStyle.styleToUpdate;
+        } else {
+          return style;
+        }
+      });
+      return {
+        ...state,
+        userStyles: [...updatedItem],
+      };
+    }
     default: {
       return state;
     }
