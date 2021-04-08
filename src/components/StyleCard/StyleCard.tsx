@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Carousel, Form } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import {
   selectPublicStyles,
   selectTypePublicStyles,
 } from "../../store/recommendation/selectors";
 import { StyleData } from "../../store/recommendation/types";
+import StyleCarousel from "../StyleCarousel/StyleCarousel";
 
 export default function StyleCard() {
   const publicStyles = useSelector(selectPublicStyles);
@@ -32,25 +33,11 @@ export default function StyleCard() {
               </Form.Control>
             </Form.Group>
           </Form>
-          {type === "" && !typeStyles.length
-            ? publicStyles.map((style: StyleData) => {
-                return (
-                  <img
-                    key={style.id}
-                    src={style.imageUrl}
-                    alt={`${style.id} style`}
-                  />
-                );
-              })
-            : typeStyles.map((style: StyleData) => {
-                return (
-                  <img
-                    key={style.id}
-                    src={style.imageUrl}
-                    alt={`${style.id} style`}
-                  />
-                );
-              })}
+          {type === "" && !typeStyles.length ? (
+            <StyleCarousel data={publicStyles} />
+          ) : (
+            <StyleCarousel data={typeStyles} />
+          )}
         </div>
       ) : (
         <p></p>
