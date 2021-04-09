@@ -5,9 +5,13 @@ import { useParams } from "react-router";
 import StarRatingComponent from "react-star-rating-component";
 import {
   updateCommentUserStyle,
+  updateRatingPublicStyle,
   updateRatingUserStyle,
 } from "../../store/recommendation/actions";
-import { selectUserStyleWithId } from "../../store/recommendation/selectors";
+import {
+  selectPublicStyleWithId,
+  selectUserStyleWithId,
+} from "../../store/recommendation/selectors";
 
 type Params = {
   type: string;
@@ -20,17 +24,27 @@ export default function UpdateStylePage() {
   const type = route_params.type; //user or public
   const id = parseInt(route_params.id); //user's id or public's id
   const userTypeStyle = useSelector(selectUserStyleWithId(id)); //type === user
-  //   console.log(userTypeStyle);
+  const publicTypeStyle = useSelector(selectPublicStyleWithId(id));
+  const baseRating =
+    publicTypeStyle && publicTypeStyle.users
+      ? publicTypeStyle.users[0].publicstyleRatings?.rating
+      : 0;
   const [rating, setRating] = useState(null || userTypeStyle?.rating);
   const [comment, setComment] = useState("" || userTypeStyle?.comment);
+  const [publicRating, setPublicRating] = useState(null || baseRating);
 
   const clickedStar = (nextValue: number) => {
     setRating(nextValue);
-    dispatch(updateRatingUserStyle(id, rating));
+    dispatch(updateRatingUserStyle(id, nextValue));
   };
 
   const submitComment = () => {
     dispatch(updateCommentUserStyle(id, comment));
+  };
+
+  const clickedStarPublic = (nextValue: number) => {
+    setPublicRating(nextValue);
+    dispatch(updateRatingPublicStyle(id, nextValue));
   };
 
   return (
@@ -58,6 +72,20 @@ export default function UpdateStylePage() {
             </Form.Group>
             <Button onClick={submitComment}>Update</Button>
           </Form>
+        </div>
+      ) : (
+        <p></p>
+      )}
+      {type === "public" && publicTypeStyle ? (
+        <div>
+          <img src={publicTypeStyle.imageUrl} />
+          <br></br>
+          <StarRatingComponent
+            name="rating"
+            starCount={5}
+            value={publicRating ? publicRating : 0}
+            onStarClick={clickedStarPublic}
+          />
         </div>
       ) : (
         <p></p>

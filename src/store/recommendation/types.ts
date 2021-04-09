@@ -15,8 +15,12 @@ export type RecommendationAction =
       payload: UserRatingPublicStyle[];
     }
   | {
-      type: "recommendation/updateRatingUserSytle";
+      type: "recommendation/updatedUserSytle";
       payload: { styleToUpdate: StyleToUpdate };
+    }
+  | {
+      type: "recommendation/updatePublicStyle";
+      payload: { publicstyleUpdated: UserRatingPublicStyle };
     };
 
 export type StyleToUpdate = {
@@ -63,6 +67,7 @@ export type UserStyleData = {
 };
 
 export type UserRatingPublicStyle = {
+  clothingType: string;
   createdAt: string;
   id: number;
   imageUrl: string;
@@ -74,7 +79,7 @@ export type UserRatingPublicStyle = {
 
 export type UserRating = {
   id: number;
-  publicstyleRating: {
+  publicstyleRatings: {
     rating: number;
   };
 };

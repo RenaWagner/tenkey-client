@@ -1,5 +1,5 @@
 import { ReduxState } from "../index";
-import { UserStyleData } from "./types";
+import { UserRatingPublicStyle, UserStyleData } from "./types";
 
 export const selectPublicStyles = (reduxState: ReduxState) =>
   reduxState.recommendation.publicStyles;
@@ -33,4 +33,16 @@ export const selectUserStyleWithId = (id: number) => (
     return id === style.id;
   });
   return specificUserStyle;
+};
+
+export const selectPublicStyleWithId = (id: number) => (
+  reduxState: ReduxState
+) => {
+  const clonedPublicStyles: UserRatingPublicStyle[] = [
+    ...reduxState.recommendation.publicStylesRating,
+  ];
+  const specificPublicStyle = clonedPublicStyles.find((style) => {
+    return id === style.id;
+  });
+  return specificPublicStyle;
 };

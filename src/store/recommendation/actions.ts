@@ -44,7 +44,6 @@ export const fetchUserStyle = (temp: number) => {
         }
       );
       dispatch(fetchedUserStyles(response.data));
-      console.log(response.data);
       // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       // dispatch(appDoneLoading());
     } catch (error) {
@@ -99,7 +98,8 @@ export const updateRatingUserStyle = (
           headers: { Authorization: `Bearer ${jwt}` },
         }
       );
-      dispatch(updateRatingUserSytle(response.data));
+      console.log(response.data);
+      dispatch(updatedUserSytle(response.data));
       // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       // dispatch(appDoneLoading());
     } catch (error) {
@@ -108,8 +108,8 @@ export const updateRatingUserStyle = (
   };
 };
 
-export const updateRatingUserSytle = (data: StyleToUpdate) => ({
-  type: "recommendation/updateRatingUserSytle",
+export const updatedUserSytle = (data: StyleToUpdate) => ({
+  type: "recommendation/updatedUserSytle",
   payload: data,
 });
 
@@ -131,7 +131,7 @@ export const updateCommentUserStyle = (
         }
       );
       console.log(response.data);
-      dispatch(updateRatingUserSytle(response.data));
+      dispatch(updatedUserSytle(response.data));
       // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       // dispatch(appDoneLoading());
     } catch (error) {
@@ -139,3 +139,35 @@ export const updateCommentUserStyle = (
     }
   };
 };
+
+export const updateRatingPublicStyle = (
+  publicstyleId: number,
+  rating: number | undefined
+) => {
+  return async (dispatch: Dispatch, getState: () => ReduxState) => {
+    dispatch(recommendationLoading());
+    try {
+      const jwt: string = getState().user.token;
+      const response = await axios.patch(
+        `${API_URL_STYLE}/user/public/${publicstyleId}`,
+        {
+          rating: rating,
+        },
+        {
+          headers: { Authorization: `Bearer ${jwt}` },
+        }
+      );
+      console.log(response.data);
+      dispatch(updatePublicStyle(response.data));
+      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
+      // dispatch(appDoneLoading());
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const updatePublicStyle = (data: UserRatingPublicStyle) => ({
+  type: "recommendation/updatePublicStyle",
+  payload: data,
+});

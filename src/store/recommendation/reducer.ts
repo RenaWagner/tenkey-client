@@ -39,7 +39,7 @@ export default function reducer(
         publicStylesRating: [...action.payload],
       };
     }
-    case "recommendation/updateRatingUserSytle": {
+    case "recommendation/updatedUserSytle": {
       const updatedStyle = action.payload;
       const updatedItem = state.userStyles.map((style) => {
         if (style.id === updatedStyle.styleToUpdate.id) {
@@ -51,6 +51,20 @@ export default function reducer(
       return {
         ...state,
         userStyles: [...updatedItem],
+      };
+    }
+    case "recommendation/updatePublicStyle": {
+      const updatedStyle = action.payload;
+      const updatedItem = state.publicStylesRating.map((style) => {
+        if (style.id === updatedStyle.publicstyleUpdated.id) {
+          return updatedStyle.publicstyleUpdated;
+        } else {
+          return style;
+        }
+      });
+      return {
+        ...state,
+        publicStylesRating: [...updatedItem],
       };
     }
     default: {
