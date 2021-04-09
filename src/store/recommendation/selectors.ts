@@ -1,4 +1,5 @@
 import { ReduxState } from "../index";
+import { UserRatingPublicStyle, UserStyleData } from "./types";
 
 export const selectPublicStyles = (reduxState: ReduxState) =>
   reduxState.recommendation.publicStyles;
@@ -20,4 +21,28 @@ export const selectTypePublicStyles = (type: string) => (
     return style.clothingType === type;
   });
   return filteredPublicStyles;
+};
+
+export const selectUserStyleWithId = (id: number) => (
+  reduxState: ReduxState
+) => {
+  const clonedUserStyles: UserStyleData[] = [
+    ...reduxState.recommendation.userStyles,
+  ];
+  const specificUserStyle = clonedUserStyles.find((style) => {
+    return id === style.id;
+  });
+  return specificUserStyle;
+};
+
+export const selectPublicStyleWithId = (id: number) => (
+  reduxState: ReduxState
+) => {
+  const clonedPublicStyles: UserRatingPublicStyle[] = [
+    ...reduxState.recommendation.publicStylesRating,
+  ];
+  const specificPublicStyle = clonedPublicStyles.find((style) => {
+    return id === style.id;
+  });
+  return specificPublicStyle;
 };

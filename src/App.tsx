@@ -7,6 +7,7 @@ import ForecastPage from "./pages/ForecastPage/ForecastPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import StylePage from "./pages/StylePage/StylePage";
+import UpdateStylePage from "./pages/UpdateStylePage/UpdateStylePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/style" component={StylePage} />
+        <Route path="/update/:type/:id" component={UpdateStylePage} />
       </Switch>
     </div>
   );
