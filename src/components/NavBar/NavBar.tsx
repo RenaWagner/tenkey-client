@@ -36,6 +36,13 @@ export default function NavBar() {
             >
               Today's Style
             </Nav.Link>
+            <Nav.Link
+              activeStyle={{ fontWeight: "bold" }}
+              as={NavLink}
+              to="/upload"
+            >
+              Upload Your Style
+            </Nav.Link>
             {isLoggedIn ? (
               <Button onClick={() => dispatch(logout)}>Logout</Button>
             ) : (
