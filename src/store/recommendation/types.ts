@@ -21,6 +21,9 @@ export type RecommendationAction =
   | {
       type: "recommendation/updatePublicStyle";
       payload: { publicstyleUpdated: UserRatingPublicStyle };
+    }
+  | {
+      type: "recommendation/uploadedStyle";
     };
 
 export type StyleToUpdate = {
@@ -82,4 +85,24 @@ export type UserRating = {
   publicstyleRatings: {
     rating: number;
   };
+};
+
+export type UploadData = {
+  date: string;
+  temperature: string;
+  comment: string;
+  rating: number;
+};
+
+export type UploadedData = {
+  comment: string;
+  createdAt: string;
+  id: number;
+  imageUrl: string;
+  maxTemp: number;
+  minTemp: number;
+  rating: number;
+  updatedAt: string;
+  userId: number;
+  wearingDate: string;
 };

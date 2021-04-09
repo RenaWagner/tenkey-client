@@ -4,6 +4,8 @@ import { ReduxState } from "..";
 import {
   StyleData,
   StyleToUpdate,
+  UploadData,
+  UploadedData,
   UserRatingPublicStyle,
   UserStyleData,
 } from "./types";
@@ -169,5 +171,40 @@ export const updateRatingPublicStyle = (
 
 export const updatePublicStyle = (data: UserRatingPublicStyle) => ({
   type: "recommendation/updatePublicStyle",
+  payload: data,
+});
+
+export const uploadStyle = (data: UploadData, imageUrl: string) => {
+  return async (dispatch: Dispatch, getState: () => ReduxState) => {
+    dispatch(recommendationLoading());
+    try {
+      const { date, temperature, comment, rating } = data;
+      const temp = parseInt(temperature);
+      const jwt: string = getState().user.token;
+      const response = await axios.post(
+        `${API_URL_STYLE}/user/original`,
+        {
+          date: date,
+          comment: comment,
+          temp: temp,
+          imageUrl: imageUrl,
+          rating: rating,
+        },
+        {
+          headers: { Authorization: `Bearer ${jwt}` },
+        }
+      );
+      console.log(response.data);
+      dispatch(uploadedStyle(response.data));
+      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
+      // dispatch(appDoneLoading());
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const uploadedStyle = (data: UploadedData) => ({
+  type: "recommendation/uploadedStyle",
   payload: data,
 });
