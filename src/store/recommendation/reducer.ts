@@ -50,6 +50,7 @@ export default function reducer(
       });
       return {
         ...state,
+        loading: false,
         userStyles: [...updatedItem],
       };
     }
@@ -64,7 +65,14 @@ export default function reducer(
       });
       return {
         ...state,
+        loading: false,
         publicStylesRating: [...updatedItem],
+      };
+    }
+    case "recommendation/uploadedStyle": {
+      return {
+        ...state,
+        loading: false,
       };
     }
     default: {
