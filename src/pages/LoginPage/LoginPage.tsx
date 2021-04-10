@@ -1,5 +1,6 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { Lock } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
@@ -29,7 +30,7 @@ export default function LoginPage() {
     <div className="mt-2 d-flex justify-content-center align-items-center">
       <Form onSubmit={formSubmit}>
         <h2 className="mt-5">Log In</h2>
-        <img />
+        <Lock color="orange" size={46} className="mt-3 mb-3" />
         <Form.Group as={Row} controlId="formGroupEmail">
           <Form.Label column sm="3">
             Email
