@@ -10,6 +10,7 @@ import StylePage from "./pages/StylePage/StylePage";
 import UpdateStylePage from "./pages/UpdateStylePage/UpdateStylePage";
 import UploadPage from "./pages/UploadPage/UploadPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import ShowProfilePage from "./pages/ShowProfilePage/ShowProfilePage";
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
         <Route path="/style" component={StylePage} />
         <Route path="/update/:type/:id" component={UpdateStylePage} />
         <Route path="/upload" component={UploadPage} />
-        <Route path="/profile" component={ProfilePage} />
+        <Route exact path="/profile" component={ShowProfilePage} />
+        <Route path="/profile/update" component={ProfilePage} />
       </Switch>
     </div>
   );
