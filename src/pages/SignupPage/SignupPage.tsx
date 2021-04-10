@@ -1,5 +1,6 @@
 import React, { useState, FormEvent, useEffect } from "react";
 import { Form, Col, Button } from "react-bootstrap";
+import { PersonSquare } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
@@ -35,7 +36,7 @@ export default function SignupPage() {
     <div className="mt-2 d-flex justify-content-center align-items-center">
       <Form onSubmit={formSubmit}>
         <h2 className="mt-5">Sign Up</h2>
-        <img />
+        <PersonSquare color="orange" size={46} className="mt-3 mb-3" />
         <Form.Row>
           <Form.Group as={Col}>
             <Form.Control
