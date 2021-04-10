@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 import { ReduxState } from "..";
-import { UserData, UserInputData } from "./types";
+import { UpdateProfile, UserData, UserInputData } from "./types";
 const API_URL_STYLE = `https://tenkeyapp.herokuapp.com`;
 
 export const login = (email: string, password: string, history: any) => {
@@ -82,3 +82,34 @@ export const bootstrapLoginState = () => async (
     // dispatch(userLoggedIn(jwt, profile));
   }
 };
+
+export const updateProfile = (data: UpdateProfile) => {
+  return async (dispatch: Dispatch, getState: () => ReduxState) => {
+    dispatch(userLoading());
+    try {
+      const { type, sensitiveness } = data;
+      const jwt: string = getState().user.token;
+      const response = await axios.patch(
+        `${API_URL_STYLE}/user/profile`,
+        {
+          clothingType: type,
+          sensitiveness: sensitiveness,
+        },
+        {
+          headers: { Authorization: `Bearer ${jwt}` },
+        }
+      );
+      console.log(response.data);
+      dispatch(updatedProfile(response.data));
+      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
+      // dispatch(appDoneLoading());
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const updatedProfile = (data: UserData) => ({
+  type: "user/updateProfile",
+  payload: data,
+});

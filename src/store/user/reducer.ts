@@ -30,6 +30,13 @@ export default function reducer(state = initialState, action: UserAction): any {
         token: "",
       };
     }
+    case "user/updateProfile": {
+      return {
+        ...state,
+        loading: false,
+        userInfo: action.payload.userToUpdate,
+      };
+    }
     default: {
       return state;
     }

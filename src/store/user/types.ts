@@ -8,6 +8,10 @@ export type UserAction =
     }
   | {
       type: "user/logout";
+    }
+  | {
+      type: "user/updateProfile";
+      payload: { userToUpdate: UserData };
     };
 
 export type UserData = {
@@ -33,6 +37,11 @@ export type UserInputData = {
   lastName: string;
   email: string;
   password: string;
+  type: string;
+  sensitiveness: string;
+};
+
+export type UpdateProfile = {
   type: string;
   sensitiveness: string;
 };
