@@ -9,6 +9,7 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import StylePage from "./pages/StylePage/StylePage";
 import UpdateStylePage from "./pages/UpdateStylePage/UpdateStylePage";
 import UploadPage from "./pages/UploadPage/UploadPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/style" component={StylePage} />
         <Route path="/update/:type/:id" component={UpdateStylePage} />
         <Route path="/upload" component={UploadPage} />
+        <Route path="/profile" component={ProfilePage} />
       </Switch>
     </div>
   );

@@ -48,6 +48,17 @@ export default function NavBar() {
               <></>
             )}
             {isLoggedIn ? (
+              <Nav.Link
+                activeStyle={{ fontWeight: "bold" }}
+                as={NavLink}
+                to="/profile"
+              >
+                Setting
+              </Nav.Link>
+            ) : (
+              <></>
+            )}
+            {isLoggedIn ? (
               <Button onClick={() => dispatch(logout)}>Logout</Button>
             ) : (
               <Nav.Link
