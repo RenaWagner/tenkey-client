@@ -1,6 +1,8 @@
 import axios from "axios";
 import { Dispatch } from "redux";
+import { ThunkDispatch } from "redux-thunk";
 import { ReduxState } from "..";
+import { setMessage, showMessage } from "../message/actions";
 import {
   StyleData,
   StyleToUpdate,
@@ -17,8 +19,6 @@ export const fetchPublicStyles = (temp: number) => {
     try {
       const response = await axios.get(`${API_URL_STYLE}/public/${temp}`);
       dispatch(fetchedPublicStyles(response.data));
-      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
-      // dispatch(appDoneLoading());
     } catch (error) {
       console.log(error.message);
     }
@@ -46,8 +46,6 @@ export const fetchUserStyle = (temp: number) => {
         }
       );
       dispatch(fetchedUserStyles(response.data));
-      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
-      // dispatch(appDoneLoading());
     } catch (error) {
       console.log(error.message);
     }
@@ -68,8 +66,6 @@ export const fetchPublicStyleRating = (temp: number) => {
         headers: { Authorization: `Bearer ${jwt}` },
       });
       dispatch(fetchedPublicStyleUserRating(response.data));
-      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
-      // dispatch(appDoneLoading());
     } catch (error) {
       console.log(error.message);
     }
@@ -87,7 +83,10 @@ export const updateRatingUserStyle = (
   id: number,
   rating: number | undefined
 ) => {
-  return async (dispatch: Dispatch, getState: () => ReduxState) => {
+  return async (
+    dispatch: ThunkDispatch<ReduxState, void, any>,
+    getState: () => ReduxState
+  ) => {
     dispatch(recommendationLoading());
     try {
       const jwt: string = getState().user.token;
@@ -102,10 +101,17 @@ export const updateRatingUserStyle = (
       );
       console.log(response.data);
       dispatch(updatedUserSytle(response.data));
-      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
-      // dispatch(appDoneLoading());
+      dispatch(
+        showMessage("success", false, "Successfully updated the rating!", 2000)
+      );
     } catch (error) {
-      console.log(error.message);
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
     }
   };
 };
@@ -119,7 +125,10 @@ export const updateCommentUserStyle = (
   id: number,
   comment: string | undefined
 ) => {
-  return async (dispatch: Dispatch, getState: () => ReduxState) => {
+  return async (
+    dispatch: ThunkDispatch<ReduxState, void, any>,
+    getState: () => ReduxState
+  ) => {
     dispatch(recommendationLoading());
     try {
       const jwt: string = getState().user.token;
@@ -134,10 +143,17 @@ export const updateCommentUserStyle = (
       );
       console.log(response.data);
       dispatch(updatedUserSytle(response.data));
-      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
-      // dispatch(appDoneLoading());
+      dispatch(
+        showMessage("success", false, "Successfully updated the comment!", 2000)
+      );
     } catch (error) {
-      console.log(error.message);
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
     }
   };
 };
@@ -146,7 +162,10 @@ export const updateRatingPublicStyle = (
   publicstyleId: number,
   rating: number | undefined
 ) => {
-  return async (dispatch: Dispatch, getState: () => ReduxState) => {
+  return async (
+    dispatch: ThunkDispatch<ReduxState, void, any>,
+    getState: () => ReduxState
+  ) => {
     dispatch(recommendationLoading());
     try {
       const jwt: string = getState().user.token;
@@ -161,10 +180,17 @@ export const updateRatingPublicStyle = (
       );
       console.log(response.data);
       dispatch(updatePublicStyle(response.data));
-      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
-      // dispatch(appDoneLoading());
+      dispatch(
+        showMessage("success", false, "Successfully updated the rating!", 2000)
+      );
     } catch (error) {
-      console.log(error.message);
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
     }
   };
 };
@@ -175,7 +201,10 @@ export const updatePublicStyle = (data: UserRatingPublicStyle) => ({
 });
 
 export const uploadStyle = (data: UploadData, imageUrl: string) => {
-  return async (dispatch: Dispatch, getState: () => ReduxState) => {
+  return async (
+    dispatch: ThunkDispatch<ReduxState, void, any>,
+    getState: () => ReduxState
+  ) => {
     dispatch(recommendationLoading());
     try {
       const { date, temperature, comment, rating } = data;
@@ -196,10 +225,17 @@ export const uploadStyle = (data: UploadData, imageUrl: string) => {
       );
       console.log(response.data);
       dispatch(uploadedStyle(response.data));
-      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
-      // dispatch(appDoneLoading());
+      dispatch(
+        showMessage("success", false, "Successfully uploaded your style!", 2000)
+      );
     } catch (error) {
-      console.log(error.message);
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
     }
   };
 };

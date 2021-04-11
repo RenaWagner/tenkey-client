@@ -1,11 +1,16 @@
 import axios from "axios";
 import { Dispatch } from "redux";
+import { ThunkDispatch } from "redux-thunk";
 import { ReduxState } from "..";
+import { setMessage, showMessage } from "../message/actions";
 import { UpdateProfile, UserData, UserInputData } from "./types";
 const API_URL_STYLE = `https://tenkeyapp.herokuapp.com`;
 
 export const login = (email: string, password: string, history: any) => {
-  return async (dispatch: Dispatch, getState: () => ReduxState) => {
+  return async (
+    dispatch: ThunkDispatch<ReduxState, void, any>,
+    getState: () => ReduxState
+  ) => {
     dispatch(userLoading());
     try {
       const response = await axios.post(`${API_URL_STYLE}/login`, {
@@ -17,10 +22,15 @@ export const login = (email: string, password: string, history: any) => {
       dispatch(loginSuccess(response.data, token));
       history.push("/");
       localStorage.setItem("jwt", token);
-      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
-      // dispatch(appDoneLoading());
+      dispatch(showMessage("success", false, "Welcome back!", 2000));
     } catch (error) {
-      console.log(error.message);
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
     }
   };
 };
@@ -35,7 +45,10 @@ export const loginSuccess = (data: UserData, token: string) => ({
 });
 
 export const signup = (data: UserInputData, history: any) => {
-  return async (dispatch: Dispatch, getState: () => ReduxState) => {
+  return async (
+    dispatch: ThunkDispatch<ReduxState, void, any>,
+    getState: () => ReduxState
+  ) => {
     dispatch(userLoading());
     try {
       const {
@@ -59,10 +72,17 @@ export const signup = (data: UserInputData, history: any) => {
       dispatch(loginSuccess(response.data, token));
 
       history.push("/");
-      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
-      // dispatch(appDoneLoading());
+      dispatch(
+        showMessage("success", false, "Successfully created an account!", 2000)
+      );
     } catch (error) {
-      console.log(error.message);
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
     }
   };
 };
@@ -100,7 +120,10 @@ const getProfile = async (token: string) => {
 };
 
 export const updateProfile = (data: UpdateProfile) => {
-  return async (dispatch: Dispatch, getState: () => ReduxState) => {
+  return async (
+    dispatch: ThunkDispatch<ReduxState, void, any>,
+    getState: () => ReduxState
+  ) => {
     dispatch(userLoading());
     try {
       const { type, sensitiveness } = data;
@@ -117,10 +140,22 @@ export const updateProfile = (data: UpdateProfile) => {
       );
       console.log(response.data);
       dispatch(updatedProfile(response.data));
-      // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
-      // dispatch(appDoneLoading());
+      dispatch(
+        showMessage(
+          "success",
+          false,
+          "Successfully updated your profile!",
+          2000
+        )
+      );
     } catch (error) {
-      console.log(error.message);
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
     }
   };
 };
