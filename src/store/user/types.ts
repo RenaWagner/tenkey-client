@@ -4,7 +4,7 @@ export type UserAction =
     }
   | {
       type: "user/login";
-      payload: UserData;
+      payload: { data: UserData; token: string };
     }
   | {
       type: "user/logout";

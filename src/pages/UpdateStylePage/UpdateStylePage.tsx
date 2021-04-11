@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import StarRatingComponent from "react-star-rating-component";
 import {
   updateCommentUserStyle,
@@ -12,6 +12,7 @@ import {
   selectPublicStyleWithId,
   selectUserStyleWithId,
 } from "../../store/recommendation/selectors";
+import { selectUser, selectUserToken } from "../../store/user/selectors";
 
 type Params = {
   type: string;
@@ -33,6 +34,16 @@ export default function UpdateStylePage() {
   const [comment, setComment] = useState("" || userTypeStyle?.comment);
   const [publicRating, setPublicRating] = useState(null || baseRating);
 
+  const userData = useSelector(selectUser);
+  const history = useHistory();
+  const isLoggedIn = useSelector(selectUserToken);
+
+  useEffect(() => {
+    if (isLoggedIn === "") {
+      history.push("/login");
+    }
+  }, [isLoggedIn, history]);
+
   const clickedStar = (nextValue: number) => {
     setRating(nextValue);
     dispatch(updateRatingUserStyle(id, nextValue));
@@ -49,7 +60,7 @@ export default function UpdateStylePage() {
 
   return (
     <div>
-      <p>Update the style</p>
+      <h3>Update the style</h3>
       {type === "user" && userTypeStyle ? (
         <div>
           <img src={userTypeStyle.imageUrl} />
