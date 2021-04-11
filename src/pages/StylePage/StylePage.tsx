@@ -28,13 +28,15 @@ export default function StylePage() {
         dispatch(fetchPublicStyles(temp));
       }
     }
-  }, [dispatch, todayWeather]);
+  }, [dispatch, todayWeather, isLoggedIn]);
 
   return (
     <div>
       {weatherData.length ? (
         <div>
-          <h2>Today's style recommendation in {todayWeather[0].city_name}</h2>
+          <h2 className="mt-3">
+            Today's style recommendation in {todayWeather[0].city_name}
+          </h2>
 
           <StyleCard />
         </div>

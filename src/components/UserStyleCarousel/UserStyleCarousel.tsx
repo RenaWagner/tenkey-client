@@ -14,8 +14,11 @@ type Props = {
 
 export default function UserStyleCarousel(props: Props) {
   return (
-    <div>
-      <Carousel className="mt-5">
+    <div
+      style={{ maxWidth: "100%" }}
+      className="mt-2 d-flex justify-content-center align-items-center"
+    >
+      <Carousel className="mt-3">
         {props.data.map((style: any) => {
           return (
             <Carousel.Item key={style.id}>
@@ -23,10 +26,11 @@ export default function UserStyleCarousel(props: Props) {
                 key={style.id}
                 src={style.imageUrl}
                 alt={`${style.id} style`}
+                style={{ maxWidth: "100%", maxHeight: 700 }}
               />
               <Carousel.Caption
                 style={{
-                  backgroundColor: "orange",
+                  backgroundColor: `rgba(255, 139, 61, 0.5)`,
                   color: "white",
                 }}
                 className="p-5"
