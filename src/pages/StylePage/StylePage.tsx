@@ -47,7 +47,6 @@ export default function StylePage() {
 
   return (
     <div>
-      <p>TODAY</p>
       {weatherData.length ? (
         <div>
           <h4 className="mt-3">
