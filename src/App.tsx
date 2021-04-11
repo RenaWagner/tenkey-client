@@ -11,11 +11,14 @@ import UpdateStylePage from "./pages/UpdateStylePage/UpdateStylePage";
 import UploadPage from "./pages/UploadPage/UploadPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ShowProfilePage from "./pages/ShowProfilePage/ShowProfilePage";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { bootstrapLoginState } from "./store/user/actions";
+import Messages from "./components/Messages/Messages";
+import { selectMessage } from "./store/message/selectors";
 
 function App() {
   const dispatch = useDispatch();
+  const message = useSelector(selectMessage);
 
   useEffect(() => {
     dispatch(bootstrapLoginState());
@@ -24,6 +27,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
+      {message ? <Messages /> : <></>}
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/forecast" component={ForecastPage} />
