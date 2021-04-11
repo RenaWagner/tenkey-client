@@ -12,7 +12,7 @@ import {
   selectPublicStyleWithId,
   selectUserStyleWithId,
 } from "../../store/recommendation/selectors";
-import { selectUser, selectUserToken } from "../../store/user/selectors";
+import { selectUserToken } from "../../store/user/selectors";
 
 type Params = {
   type: string;
@@ -33,8 +33,6 @@ export default function UpdateStylePage() {
   const [rating, setRating] = useState(null || userTypeStyle?.rating);
   const [comment, setComment] = useState("" || userTypeStyle?.comment);
   const [publicRating, setPublicRating] = useState(null || baseRating);
-
-  const userData = useSelector(selectUser);
   const history = useHistory();
   const isLoggedIn = useSelector(selectUserToken);
 
@@ -63,7 +61,7 @@ export default function UpdateStylePage() {
       <h3>Update the style</h3>
       {type === "user" && userTypeStyle ? (
         <div>
-          <img src={userTypeStyle.imageUrl} />
+          <img src={userTypeStyle.imageUrl} alt="style preview" />
           <br></br>
           <StarRatingComponent
             name="rating"
@@ -89,7 +87,7 @@ export default function UpdateStylePage() {
       )}
       {type === "public" && publicTypeStyle ? (
         <div>
-          <img src={publicTypeStyle.imageUrl} />
+          <img src={publicTypeStyle.imageUrl} alt="style preview" />
           <br></br>
           <StarRatingComponent
             name="rating"

@@ -16,6 +16,7 @@ import {
   ResponsiveContainer,
   LabelList,
 } from "recharts";
+import { useHistory } from "react-router";
 
 function XAxisWeather(props: any) {
   return (
@@ -45,6 +46,7 @@ function XAxisDate(props: any) {
 export default function ForecastPage() {
   const dispatch = useDispatch();
   const location = useSelector(selectLocation);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchForecast(location));
@@ -73,6 +75,14 @@ export default function ForecastPage() {
     };
   });
 
+  const axisClicked = (e: any) => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const splitDate = e.value.split("/");
+    const date = `${year}-${splitDate[0]}-${splitDate[1]}`;
+    history.push(`/style/${date}`);
+  };
+
   return (
     <div className="mb-5">
       <h2 className="mt-5">Forecast</h2>
@@ -92,6 +102,7 @@ export default function ForecastPage() {
             scale="band"
             xAxisId={0}
             tick={<XAxisDate />}
+            onClick={axisClicked}
           />
           <XAxis
             dataKey="weather_icon"

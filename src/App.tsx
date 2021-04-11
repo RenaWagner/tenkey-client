@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bootstrapLoginState } from "./store/user/actions";
 import Messages from "./components/Messages/Messages";
 import { selectMessage } from "./store/message/selectors";
+import ForecastStylePage from "./pages/ForecastStylePage/ForecastStylePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +34,8 @@ function App() {
         <Route path="/forecast" component={ForecastPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignupPage} />
-        <Route path="/style" component={StylePage} />
+        <Route exact path="/style" component={StylePage} />
+        <Route path="/style/:date" component={ForecastStylePage} />
         <Route path="/update/:type/:id" component={UpdateStylePage} />
         <Route path="/upload" component={UploadPage} />
         <Route exact path="/profile" component={ShowProfilePage} />

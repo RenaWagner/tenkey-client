@@ -16,7 +16,6 @@ import {
 export default function WeatherToday() {
   const todayWeatherArray = useSelector(selectTodayWeather);
   const todayWeather = todayWeatherArray[0];
-  const date = todayWeather?.datetime.substr(0, 10);
   const isLoading = useSelector(selectLoading);
 
   return (
@@ -42,7 +41,7 @@ export default function WeatherToday() {
             <Card.Header>Today's Weather</Card.Header>
             <Card.Body>
               <Card.Title>{todayWeather.city_name}</Card.Title>
-              <Link to="/">
+              <Link to="/style">
                 <Button className="mt-5" variant="warning">
                   What should I wear today?
                 </Button>
