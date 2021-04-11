@@ -58,7 +58,9 @@ export default function WeatherToday() {
                 <ListGroupItem>
                   Feeling Temperature: {todayWeather.app_temp}°C
                 </ListGroupItem>
-                <ListGroupItem>Rain: {todayWeather.precip}mm/hr</ListGroupItem>
+                <ListGroupItem>
+                  Rain: {todayWeather.precip.toFixed(1)}mm/hr
+                </ListGroupItem>
                 <ListGroupItem>
                   Wind: {todayWeather.wind_cdir}{" "}
                   {todayWeather.wind_spd.toFixed(1)}m/s

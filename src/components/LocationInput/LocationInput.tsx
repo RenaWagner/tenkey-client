@@ -30,7 +30,7 @@ export default function LocationInput() {
   const formSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const cityNames = cities.filter((item: any) => {
-      return item.city_name === city;
+      return item.city_name.toLowerCase().indexOf(city.toLowerCase()) >= 0;
     });
 
     console.log(cityNames);
