@@ -23,7 +23,7 @@ export default function StylePage() {
       const temp = Math.round(todayWeather[0].app_temp);
       if (isLoggedIn !== "") {
         dispatch(fetchUserStyle(temp));
-        dispatch(fetchPublicStyleRating(temp)); //also dispatch the one get public user style rating
+        dispatch(fetchPublicStyleRating(temp));
       } else {
         dispatch(fetchPublicStyles(temp));
       }
