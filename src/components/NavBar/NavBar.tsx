@@ -19,7 +19,7 @@ export default function NavBar() {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav style={{ width: "100%" }} fill>
+        <Nav className="justify-content-center" style={{ width: "100%" }} fill>
           <Nav.Item>
             <Nav.Link
               activeStyle={{ fontWeight: "bold" }}
@@ -29,6 +29,8 @@ export default function NavBar() {
             >
               Today's Weather
             </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
             <Nav.Link
               activeStyle={{ fontWeight: "bold" }}
               as={NavLink}
@@ -36,7 +38,9 @@ export default function NavBar() {
             >
               Today's Style
             </Nav.Link>
-            {isLoggedIn ? (
+          </Nav.Item>
+          {isLoggedIn ? (
+            <Nav.Item>
               <Nav.Link
                 activeStyle={{ fontWeight: "bold" }}
                 as={NavLink}
@@ -44,10 +48,12 @@ export default function NavBar() {
               >
                 Upload Your Style
               </Nav.Link>
-            ) : (
-              <></>
-            )}
-            {isLoggedIn ? (
+            </Nav.Item>
+          ) : (
+            <></>
+          )}
+          {isLoggedIn ? (
+            <Nav.Item>
               <Nav.Link
                 activeStyle={{ fontWeight: "bold" }}
                 as={NavLink}
@@ -55,12 +61,14 @@ export default function NavBar() {
               >
                 Setting
               </Nav.Link>
-            ) : (
-              <></>
-            )}
-            {isLoggedIn ? (
-              <Button onClick={() => dispatch(logout)}>Logout</Button>
-            ) : (
+            </Nav.Item>
+          ) : (
+            <></>
+          )}
+          {isLoggedIn ? (
+            <Button onClick={() => dispatch(logout)}>Logout</Button>
+          ) : (
+            <Nav.Item>
               <Nav.Link
                 activeStyle={{ fontWeight: "bold" }}
                 as={NavLink}
@@ -68,8 +76,8 @@ export default function NavBar() {
               >
                 Login
               </Nav.Link>
-            )}
-          </Nav.Item>
+            </Nav.Item>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
