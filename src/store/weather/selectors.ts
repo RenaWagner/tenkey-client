@@ -11,3 +11,13 @@ export const selectForecast = (reduxState: ReduxState) =>
 
 export const selectLoading = (reduxState: ReduxState) =>
   reduxState.weather.loading;
+
+export const selectSpecificForecast = (date: string) => (
+  reduxState: ReduxState
+) => {
+  const clonedForecast = [...reduxState.weather.forecast];
+  const specificDateForecast = clonedForecast.filter((forecast) => {
+    return forecast.datetime === date;
+  });
+  return specificDateForecast;
+};

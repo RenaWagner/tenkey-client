@@ -43,16 +43,16 @@ export default function StylePage() {
         );
       }
     }
-  }, [dispatch, todayWeather, isLoggedIn]);
+  }, [dispatch, isLoggedIn]);
 
   return (
     <div>
+      <p>TODAY</p>
       {weatherData.length ? (
         <div>
-          <h2 className="mt-3">
+          <h4 className="mt-3">
             Today's style recommendation in {todayWeather[0].city_name}
-          </h2>
-
+          </h4>
           <StyleCard />
         </div>
       ) : (
