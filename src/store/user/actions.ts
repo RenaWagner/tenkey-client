@@ -13,10 +13,10 @@ export const login = (email: string, password: string, history: any) => {
         password,
       });
 
-      dispatch(loginSuccess(response.data));
-      const { jwt } = response.data;
+      const token = response.data.token;
+      dispatch(loginSuccess(response.data, token));
       history.push("/");
-      localStorage.setItem("jwt", jwt);
+      localStorage.setItem("jwt", token);
       // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       // dispatch(appDoneLoading());
     } catch (error) {
@@ -29,9 +29,9 @@ export const userLoading = () => ({
   type: "user/loading",
 });
 
-export const loginSuccess = (data: UserData) => ({
+export const loginSuccess = (data: UserData, token: string) => ({
   type: "user/login",
-  payload: data,
+  payload: { data, token },
 });
 
 export const signup = (data: UserInputData, history: any) => {
@@ -54,9 +54,10 @@ export const signup = (data: UserInputData, history: any) => {
         clothingType: type,
         sensitiveness,
       });
-      dispatch(loginSuccess(response.data));
-      // const { jwt } = response.data;
-      // localStorage.setItem("jwt", jwt);
+      const token = response.data.token;
+      localStorage.setItem("jwt", token);
+      dispatch(loginSuccess(response.data, token));
+
       history.push("/");
       // dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       // dispatch(appDoneLoading());
@@ -68,18 +69,33 @@ export const signup = (data: UserInputData, history: any) => {
 
 export const logout = (dispatch: Dispatch, getState: () => ReduxState) => {
   dispatch({ type: "user/logout" });
-  // localStorage.removeItem("jwt");
+  localStorage.removeItem("jwt");
 };
 
 export const bootstrapLoginState = () => async (
   dispatch: Dispatch,
   getState: () => ReduxState
 ) => {
-  const jwt = localStorage.getItem("jwt");
+  const token = localStorage.getItem("jwt");
 
-  if (jwt) {
-    // const profile = await getProfile(jwt);
-    // dispatch(userLoggedIn(jwt, profile));
+  if (token) {
+    const profile = await getProfile(token);
+    if (profile) {
+      dispatch(loginSuccess(profile, token));
+    }
+  }
+};
+
+const getProfile = async (token: string) => {
+  try {
+    const response = await axios.get(`${API_URL_STYLE}/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
   }
 };
 

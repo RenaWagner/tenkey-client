@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Route, Switch } from "react-router";
 import NavBar from "./components/NavBar/NavBar";
@@ -11,8 +11,16 @@ import UpdateStylePage from "./pages/UpdateStylePage/UpdateStylePage";
 import UploadPage from "./pages/UploadPage/UploadPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ShowProfilePage from "./pages/ShowProfilePage/ShowProfilePage";
+import { useDispatch } from "react-redux";
+import { bootstrapLoginState } from "./store/user/actions";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(bootstrapLoginState());
+  }, [dispatch]);
+
   return (
     <div className="App">
       <NavBar />

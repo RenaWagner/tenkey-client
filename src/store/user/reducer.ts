@@ -15,10 +15,11 @@ export default function reducer(state = initialState, action: UserAction): any {
       };
     }
     case "user/login": {
+      console.log(action.payload);
       return {
         ...state,
         loading: false,
-        userInfo: action.payload,
+        userInfo: action.payload.data,
         token: action.payload.token,
       };
     }
