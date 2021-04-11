@@ -23,9 +23,9 @@ export default function StyleCard() {
     <div>
       {isLoggedIn ? (
         <div>
-          <h4 className="mt-5">Your own styles based on today's temperature</h4>
+          <h4 className="mt-3">Your style</h4>
           <UserStyleCarousel data={userStyles} type="user" />
-          <h4 className="mt-5">General style recommendations</h4>
+          <h4 className="mt-3">General style</h4>
           <UserStyleCarousel data={publicStyleWithRating} type="public" />
         </div>
       ) : (
@@ -52,7 +52,6 @@ export default function StyleCard() {
               <PublicStyleCarousel data={typeStyles} />
             )}
           </div>
-          ) : (<p></p>
         </div>
       )}
     </div>

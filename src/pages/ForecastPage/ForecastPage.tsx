@@ -48,7 +48,7 @@ export default function ForecastPage() {
 
   useEffect(() => {
     dispatch(fetchForecast(location));
-  }, [dispatch]);
+  }, [dispatch, location]);
 
   const forecastData = useSelector(selectForecast);
   const forecastDataUsing =

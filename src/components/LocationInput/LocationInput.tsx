@@ -37,14 +37,16 @@ export default function LocationInput() {
     if (!cityNames.length) {
       alert("Cannot find the match with the typed city name");
     } else if (cityNames.length === 1) {
-      setCurrentLocation({
+      const location = {
         lattitude: cityNames[0].lat.toString(),
         longtitude: cityNames[0].lon.toString(),
-      });
-      dispatch(fetchWeatherLocation(currentLocation));
+      };
+      setCurrentLocation(location);
+      dispatch(fetchWeatherLocation(location));
     } else {
       setChosenCities(cityNames);
     }
+    setCity("");
   };
 
   return (
