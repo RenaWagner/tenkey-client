@@ -51,8 +51,14 @@ export default function ForecastPage() {
   }, [dispatch]);
 
   const forecastData = useSelector(selectForecast);
+  const forecastDataUsing =
+    window.innerWidth < 450
+      ? forecastData.slice(0, 5)
+      : window.innerWidth < 860
+      ? forecastData.slice(0, 7)
+      : forecastData;
 
-  const data = forecastData.map((data: WeatherForecast) => {
+  const data = forecastDataUsing.map((data: WeatherForecast) => {
     const splitDate = data.datetime.split("-");
     const date = `${splitDate[1]}/${splitDate[2]}`;
     return {
@@ -66,11 +72,10 @@ export default function ForecastPage() {
       weather_desc: data.weather.description,
     };
   });
-  console.log(data);
 
   return (
-    <div>
-      <h2 className="mt-5">16days Forecast</h2>
+    <div className="mb-5">
+      <h2 className="mt-5">Forecast</h2>
       <ResponsiveContainer width="100%" height={700}>
         <ComposedChart
           data={data}
@@ -122,7 +127,7 @@ export default function ForecastPage() {
             name="Precipitation (mm)"
             dataKey="precip"
             barSize={20}
-            fill="#413ea0"
+            fill="#add8e6"
             yAxisId={1}
           >
             <LabelList dataKey="precip" position="top" />
