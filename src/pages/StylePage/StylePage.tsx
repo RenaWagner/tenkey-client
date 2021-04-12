@@ -43,7 +43,7 @@ export default function StylePage() {
         );
       }
     }
-  }, [dispatch, isLoggedIn]);
+  }, [dispatch, isLoggedIn, todayWeather]);
 
   return (
     <div>
