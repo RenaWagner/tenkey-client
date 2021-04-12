@@ -41,7 +41,7 @@ export default function StyleCard() {
       ) : (
         <div>
           <div>
-            <Form>
+            <Form className="mt-2 d-flex justify-content-center align-items-center">
               <Form.Group>
                 <Form.Label>Filter by clothing type:</Form.Label>
                 <Form.Control
