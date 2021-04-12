@@ -50,8 +50,11 @@ export default function LocationInput() {
   };
 
   return (
-    <div className="mt-2 d-flex justify-content-center align-items-center container">
-      <Form onSubmit={formSubmit}>
+    <div className="mt-2">
+      <Form
+        onSubmit={formSubmit}
+        className="mt-2 d-flex justify-content-center align-items-center"
+      >
         <Form.Row>
           <Col sm={8}>
             <Form.Label htmlFor="inlineFormInput" srOnly>
@@ -72,12 +75,11 @@ export default function LocationInput() {
         </Form.Row>
       </Form>
       {chosenCities.length ? (
-        <div>
-          Choose the city:{" "}
+        <div style={{ width: "100%" }}>
           {chosenCities.map((city) => (
             <Link to="weatherToday" smooth={true} key={city.city_id}>
               <button
-                className="btn btn-light mr-2"
+                className="btn btn-light ml-1 mr-1 mb-1 mt-2"
                 style={{ height: 37.986 }}
                 onClick={() => {
                   const location = {
