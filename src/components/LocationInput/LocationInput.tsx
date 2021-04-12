@@ -20,10 +20,10 @@ type Cities = {
 
 export default function LocationInput() {
   const dispatch = useDispatch();
-  const [currentLocation, setCurrentLocation] = useState({
-    lattitude: "",
-    longtitude: "",
-  });
+  // const [currentLocation, setCurrentLocation] = useState({
+  //   lattitude: "",
+  //   longtitude: "",
+  // });
   const [city, setCity] = useState("");
   const [chosenCities, setChosenCities] = useState<Cities[]>([]);
 
@@ -33,7 +33,6 @@ export default function LocationInput() {
       return item.city_name.toLowerCase().indexOf(city.toLowerCase()) >= 0;
     });
 
-    console.log(cityNames);
     if (!cityNames.length) {
       alert("Cannot find the match with the typed city name");
     } else if (cityNames.length === 1) {
@@ -41,7 +40,7 @@ export default function LocationInput() {
         lattitude: cityNames[0].lat.toString(),
         longtitude: cityNames[0].lon.toString(),
       };
-      setCurrentLocation(location);
+      // setCurrentLocation(location);
       dispatch(fetchWeatherLocation(location));
     } else {
       setChosenCities(cityNames);
@@ -86,7 +85,7 @@ export default function LocationInput() {
                     lattitude: city.lat.toString(),
                     longtitude: city.lon.toString(),
                   };
-                  setCurrentLocation(location);
+                  // setCurrentLocation(location);
                   setChosenCities([]);
                   setCity("");
                   dispatch(weatherLoading());
