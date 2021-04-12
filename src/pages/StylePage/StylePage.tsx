@@ -15,6 +15,7 @@ import StyleCard from "../../components/StyleCard/StyleCard";
 import { selectUserToken } from "../../store/user/selectors";
 import { Spinner } from "react-bootstrap";
 import { showMessage } from "../../store/message/actions";
+import StyleImage from "../../assets/StyleImage.jpeg";
 
 export default function StylePage() {
   const weatherData = useSelector(selectTodayWeather);
@@ -63,7 +64,7 @@ export default function StylePage() {
             <div
               className="p-5 text-center bg-image"
               style={{
-                backgroundImage: `url("https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80")`,
+                backgroundImage: `url(${StyleImage})`,
                 width: "100%",
                 height: 1000,
               }}
