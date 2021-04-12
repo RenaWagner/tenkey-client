@@ -119,6 +119,8 @@ export default function UploadPage() {
           <Form.Control
             type="text"
             placeholder="Comment"
+            as="textarea"
+            rows={3}
             required
             value={data.comment}
             onChange={(e) => setData({ ...data, comment: e.target.value })}
