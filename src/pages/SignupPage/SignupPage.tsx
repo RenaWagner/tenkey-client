@@ -70,7 +70,9 @@ export default function SignupPage() {
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Choose clothing type:</Form.Label>
+          <Form.Label style={{ float: "left" }}>
+            Choose clothing type:
+          </Form.Label>
           <Form.Control
             as="select"
             required
@@ -82,7 +84,9 @@ export default function SignupPage() {
           </Form.Control>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Choose sensitiveness:</Form.Label>
+          <Form.Label style={{ float: "left" }}>
+            Choose sensitiveness:
+          </Form.Label>
           <Form.Control
             as="select"
             value={data.sensitiveness}
@@ -99,7 +103,7 @@ export default function SignupPage() {
           If you already have an account, log in from here
         </Link>
         <br></br>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="mt-3">
           Submit
         </Button>
       </Form>
