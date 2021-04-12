@@ -66,20 +66,33 @@ export default function UploadPage() {
   };
 
   return (
-    <div>
+    <div className="mx-auto w-75" style={{ maxWidth: 400 }}>
       <h2 className="mt-5">Upload Your Style</h2>
-      <Form className="mt-5">
+      {url !== "" ? (
+        <img
+          className="mx-auto w-75"
+          style={{ maxWidth: 400 }}
+          src={url}
+          alt="Upload preview"
+        />
+      ) : (
+        <></>
+      )}
+      <Form className="mt-5 mb-3">
+        <Form.Label style={{ float: "left" }}>Upload the image: </Form.Label>
         <Form.File
-          label="Upload your image:"
           type="file"
           name="file"
           onChange={uploadImage}
+          data-browse="Choose"
+          label=""
+          custom
         />
       </Form>
       <Form onSubmit={uploadFile}>
         <Form.Row>
-          <Form.Group as={Col}>
-            <Form.Label>Date: </Form.Label>
+          <Form.Group as={Col} className="mb-3">
+            <Form.Label style={{ float: "left" }}>Date: </Form.Label>
             <Form.Control
               type="date"
               required
@@ -87,8 +100,10 @@ export default function UploadPage() {
               onChange={(e) => setData({ ...data, date: e.target.value })}
             />
           </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label>Feeling Temperature (°C): </Form.Label>
+          <Form.Group as={Col} className="mb-3">
+            <Form.Label style={{ float: "left" }}>
+              Feeling Temperature (°C):{" "}
+            </Form.Label>
             <Form.Control
               type="number"
               required
@@ -99,8 +114,8 @@ export default function UploadPage() {
             />
           </Form.Group>
         </Form.Row>
-        <Form.Group>
-          <Form.Label>Comment: </Form.Label>
+        <Form.Group className="mb-3">
+          <Form.Label style={{ float: "left" }}>Comment: </Form.Label>
           <Form.Control
             type="text"
             placeholder="Comment"
@@ -109,14 +124,17 @@ export default function UploadPage() {
             onChange={(e) => setData({ ...data, comment: e.target.value })}
           />
         </Form.Group>
-        <StarRatingComponent
-          name="rating"
-          starCount={5}
-          value={data.rating}
-          onStarClick={clickedStar}
-        />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <p>Rating: </p>
+          <StarRatingComponent
+            name="rating"
+            starCount={5}
+            value={data.rating}
+            onStarClick={clickedStar}
+          />
+        </div>
         <br></br>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="mt-4">
           Submit
         </Button>
       </Form>
