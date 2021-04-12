@@ -25,10 +25,13 @@ export default function HomePage() {
               style={{ backgroundColor: `rgba(211,211,211, 0.6)` }}
             >
               <div className="text-white">
-                <h1 className="font-weight-bold" style={{ fontSize: 100 }}>
+                <h1
+                  className="font-weight-bold pl-3 pr-3"
+                  style={{ fontSize: 80 }}
+                >
                   Comfort Style
                 </h1>
-                <h2 className="mb-5">
+                <h2 className="mt-3 mb-5 pl-3 pr-3">
                   Find the perfet style that matches the weather and temperature
                 </h2>
                 <LocationButton />
