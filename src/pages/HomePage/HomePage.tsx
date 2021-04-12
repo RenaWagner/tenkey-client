@@ -2,6 +2,7 @@ import React from "react";
 import WeatherToday from "../../components/WeatherToday/WeatherToday";
 import LocationButton from "../../components/LocationBtn/LocationBtn";
 import LocationInput from "../../components/LocationInput/LocationInput";
+import HomeImage from "../../assets/HomeImage.jpeg";
 
 export default function HomePage() {
   return (
@@ -13,7 +14,7 @@ export default function HomePage() {
         <div
           className="p-5 text-center bg-image"
           style={{
-            backgroundImage: `url("https://images.unsplash.com/photo-1601638037811-d824e56adc59?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80")`,
+            backgroundImage: `url(${HomeImage})`,
             width: "100%",
             height: 1000,
           }}
