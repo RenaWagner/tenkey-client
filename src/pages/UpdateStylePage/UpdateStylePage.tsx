@@ -57,23 +57,33 @@ export default function UpdateStylePage() {
   };
 
   return (
-    <div>
-      <h3>Update the style</h3>
+    <div className="mx-auto w-75" style={{ maxWidth: 400 }}>
+      <h3 className="mt-3 mb-3">Update the style</h3>
       {type === "user" && userTypeStyle ? (
         <div>
-          <img src={userTypeStyle.imageUrl} alt="style preview" />
-          <br></br>
-          <StarRatingComponent
-            name="rating"
-            starCount={5}
-            value={rating ? rating : 0}
-            onStarClick={clickedStar}
+          <img
+            src={userTypeStyle.imageUrl}
+            alt="style preview"
+            className="mx-auto w-75 mb-4"
+            style={{ maxWidth: 400 }}
           />
+          <br></br>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <p>Rating: </p>
+            <StarRatingComponent
+              name="rating"
+              starCount={5}
+              value={rating ? rating : 0}
+              onStarClick={clickedStar}
+            />
+          </div>
           <Form>
             <Form.Group>
-              <Form.Label>Comment:</Form.Label>
+              <Form.Label style={{ float: "left" }}>Comment:</Form.Label>
               <Form.Control
                 type="text"
+                as="textarea"
+                rows={3}
                 value={comment}
                 required
                 onChange={(e) => setComment(e.target.value)}
@@ -89,12 +99,15 @@ export default function UpdateStylePage() {
         <div>
           <img src={publicTypeStyle.imageUrl} alt="style preview" />
           <br></br>
-          <StarRatingComponent
-            name="rating"
-            starCount={5}
-            value={publicRating ? publicRating : 0}
-            onStarClick={clickedStarPublic}
-          />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <p>Rating: </p>
+            <StarRatingComponent
+              name="rating"
+              starCount={5}
+              value={publicRating ? publicRating : 0}
+              onStarClick={clickedStarPublic}
+            />
+          </div>
         </div>
       ) : (
         <p></p>
