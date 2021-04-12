@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserToken } from "../../store/user/selectors";
 import { Button } from "react-bootstrap";
 import { logout } from "../../store/user/actions";
+import { PersonCircle } from "react-bootstrap-icons";
 
 export default function NavBar() {
   const isLoggedIn = useSelector(selectUserToken);
@@ -59,14 +60,20 @@ export default function NavBar() {
                 as={NavLink}
                 to="/profile"
               >
-                Setting
+                <PersonCircle color="black" size={32} />
               </Nav.Link>
             </Nav.Item>
           ) : (
             <></>
           )}
           {isLoggedIn ? (
-            <Button onClick={() => dispatch(logout)}>Logout</Button>
+            <Button
+              onClick={() => dispatch(logout)}
+              style={{ width: 100 }}
+              className="mx-auto"
+            >
+              Logout
+            </Button>
           ) : (
             <Nav.Item>
               <Nav.Link
