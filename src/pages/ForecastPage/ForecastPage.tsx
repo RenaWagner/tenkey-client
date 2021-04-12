@@ -86,6 +86,10 @@ export default function ForecastPage() {
   return (
     <div className="mb-5">
       <h2 className="mt-5">Forecast</h2>
+      <p>
+        You can click on the date and see the styles that matches the weather on
+        that day!
+      </p>
       <ResponsiveContainer width="100%" height={700}>
         <ComposedChart
           data={data}

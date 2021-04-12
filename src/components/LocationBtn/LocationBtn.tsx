@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import {
-  fetchForecast,
   fetchWeatherLocation,
   weatherLoading,
 } from "../../store/weather/actions";

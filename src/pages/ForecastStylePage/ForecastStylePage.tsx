@@ -22,7 +22,7 @@ export default function ForecastStylePage() {
   const params = route_params.hasOwnProperty("date") ? route_params.date : "";
   const forecastWeather = useSelector(selectSpecificForecast(params));
 
-  console.log(forecastWeather);
+  // console.log(forecastWeather);
 
   useEffect(() => {
     if (forecastWeather[0]) {
@@ -44,6 +44,7 @@ export default function ForecastStylePage() {
         );
       }
     }
+    // eslint-disable-next-line
   }, [dispatch, isLoggedIn]);
   return (
     <div>
