@@ -17,26 +17,44 @@ export default function ShowProfilePage() {
   }, [isLoggedIn, history]);
 
   return (
-    <div>
-      <h3>Your Profile</h3>
+    <div className="w-75 mx-auto" style={{ maxWidth: 350 }}>
+      <h3 className="mt-4 mb-3">Your Profile</h3>
       <ListGroup variant="flush">
         <ListGroup.Item disabled>
-          First Name: {userData.firstName}
+          <span style={{ float: "left" }}>First Name:</span>{" "}
+          <span style={{ float: "right" }}>{userData.firstName}</span>
         </ListGroup.Item>
-        <ListGroup.Item disabled>Last Name: {userData.lastName}</ListGroup.Item>
-        <ListGroup.Item disabled>Email: {userData.email}</ListGroup.Item>
+        <ListGroup.Item disabled>
+          <span style={{ float: "left" }}>Last Name:</span>{" "}
+          <span style={{ float: "right" }}>{userData.lastName}</span>
+        </ListGroup.Item>
+        <ListGroup.Item disabled>
+          {" "}
+          <span style={{ float: "left" }}>Email:</span>{" "}
+          <span style={{ float: "right" }}>{userData.email}</span>
+        </ListGroup.Item>
         <ListGroup.Item>
-          Sensitiveness: {userData.sensitiveness}{" "}
+          <span style={{ float: "left" }}>Sensitiveness:</span>
+          {userData.sensitiveness}
           <Link to="/profile/update">
-            <Button variant="outline-success" size="sm">
+            <Button
+              variant="outline-success"
+              size="sm"
+              style={{ float: "right" }}
+            >
               Update
             </Button>
           </Link>
         </ListGroup.Item>
         <ListGroup.Item>
-          Clothing Type: {userData.clothingType}{" "}
+          <span style={{ float: "left" }}>Clothing Type:</span>{" "}
+          {userData.clothingType}{" "}
           <Link to="/profile/update">
-            <Button variant="outline-success" size="sm">
+            <Button
+              variant="outline-success"
+              size="sm"
+              style={{ float: "right" }}
+            >
               Update
             </Button>
           </Link>

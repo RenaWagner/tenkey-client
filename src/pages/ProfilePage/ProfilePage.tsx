@@ -26,10 +26,13 @@ export default function ProfilePage() {
   };
 
   return (
-    <div>
+    <div className="mx-auto w-75" style={{ maxWidth: 300 }}>
+      <h3 className="mt-4 mb-5">Update Your Setting</h3>
       <Form onSubmit={formSubmit}>
         <Form.Group>
-          <Form.Label>Choose clothing type:</Form.Label>
+          <Form.Label style={{ float: "left" }}>
+            Choose clothing type:
+          </Form.Label>
           <Form.Control
             as="select"
             required
@@ -42,7 +45,9 @@ export default function ProfilePage() {
           </Form.Control>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Choose sensitiveness:</Form.Label>
+          <Form.Label style={{ float: "left" }}>
+            Choose sensitiveness:
+          </Form.Label>
           <Form.Control
             as="select"
             value={data.sensitiveness}
@@ -56,7 +61,7 @@ export default function ProfilePage() {
             <option value="cold">Sensitive to Cold</option>
           </Form.Control>
         </Form.Group>
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" className="mt-4">
           Update
         </Button>
       </Form>
