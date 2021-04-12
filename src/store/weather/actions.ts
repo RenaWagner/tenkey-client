@@ -2,7 +2,7 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import { ReduxState } from "..";
 import { LongLatLocation, Weather, WeatherForecast } from "./types";
-const API_URL = `http://api.weatherbit.io/v2.0`;
+const API_URL = `https://api.weatherbit.io/v2.0`;
 const API_KEY = "05b74c16ea7a4df39d05d7bc4cb2ddf8";
 
 export const fetchWeatherLocation = (
