@@ -39,7 +39,7 @@ export default function StylePage() {
             "warning",
             false,
             "It might rain today! Don't forget an umbrella or rain jacket!",
-            100000
+            5000
           )
         );
       }
@@ -110,5 +110,3 @@ export default function StylePage() {
     </div>
   );
 }
-
-// https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80

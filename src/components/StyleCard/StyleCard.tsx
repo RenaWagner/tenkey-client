@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   selectPublicStyles,
   selectTypePublicStyles,
@@ -41,19 +42,29 @@ export default function StyleCard() {
       ) : (
         <div>
           <div>
-            <Form className="mt-2 d-flex justify-content-center align-items-center">
+            <Link to="/login">
+              <h6 className="mt-3 mb-3">
+                To upload your own outfits, please register.
+              </h6>
+            </Link>
+            <Form
+              inline
+              className="mt-2 d-flex justify-content-center align-items-center"
+            >
               <Form.Group>
-                <Form.Label>Filter by clothing type:</Form.Label>
-                <Form.Control
-                  as="select"
-                  required
-                  value={type}
-                  onChange={(e) => setType(e.target.value)}
-                >
-                  <option value="all">All</option>
-                  <option value="female">Female style</option>
-                  <option value="male">Male style</option>
-                </Form.Control>
+                <Form.Row>
+                  <Form.Label>Filter by fashion: </Form.Label>
+                  <Form.Control
+                    as="select"
+                    required
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                  >
+                    <option value="all">All</option>
+                    <option value="female">Women</option>
+                    <option value="male">Men</option>
+                  </Form.Control>
+                </Form.Row>
               </Form.Group>
             </Form>
             {type === "" && !typeStyles.length ? (

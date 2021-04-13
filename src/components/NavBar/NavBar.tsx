@@ -47,7 +47,7 @@ export default function NavBar() {
                 as={NavLink}
                 to="/upload"
               >
-                Upload Your Style
+                Upload Your Outfit
               </Nav.Link>
             </Nav.Item>
           ) : (
