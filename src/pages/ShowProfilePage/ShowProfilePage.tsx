@@ -34,7 +34,7 @@ export default function ShowProfilePage() {
           <span style={{ float: "right" }}>{userData.email}</span>
         </ListGroup.Item>
         <ListGroup.Item>
-          <span style={{ float: "left" }}>Sensitiveness:</span>
+          <span style={{ float: "left" }}>Sensitivity:</span>
           {userData.sensitiveness}
           <Link to="/profile/update">
             <Button
@@ -47,7 +47,7 @@ export default function ShowProfilePage() {
           </Link>
         </ListGroup.Item>
         <ListGroup.Item>
-          <span style={{ float: "left" }}>Clothing Type:</span>{" "}
+          <span style={{ float: "left" }}>Fashion Type:</span>{" "}
           {userData.clothingType}{" "}
           <Link to="/profile/update">
             <Button

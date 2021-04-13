@@ -177,12 +177,13 @@ export const getAllUserStyles = () => {
   ) => {
     dispatch(userLoading());
     const jwt: string = getState().user.token;
+    console.log("jwt", jwt);
     try {
       const response = await axios.get(`${API_URL_STYLE}/user/original/`, {
         headers: { Authorization: `Bearer ${jwt}` },
       });
       dispatch(fetchedAllUserData(response.data));
-      // console.log(response.data);
+      //console.log(response.data);
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
@@ -207,6 +208,7 @@ export const deleteStyles = (id: number) => {
   ) => {
     const jwt: string = getState().user.token;
     try {
+      // eslint-disable-next-line
       const response = await axios.delete(
         `${API_URL_STYLE}/user/original/${id}`,
         {
