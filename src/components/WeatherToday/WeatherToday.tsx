@@ -34,7 +34,7 @@ export default function WeatherToday() {
       )}
       {todayWeather ? (
         <div
-          className="d-flex justify-content-center mt-5"
+          className="d-flex justify-content-center mt-5 mb-5"
           style={{ width: "70%", margin: "auto" }}
         >
           <Card className="text-center">
@@ -66,8 +66,8 @@ export default function WeatherToday() {
                 </ListGroupItem>
               </ListGroup>
               <Link to="/forecast">
-                <Button className="mb-3" variant="info">
-                  Check the weekly forecast of this location
+                <Button className="mt-4" variant="success">
+                  Weather forecast
                 </Button>
               </Link>
             </Card.Body>

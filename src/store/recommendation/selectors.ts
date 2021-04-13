@@ -10,6 +10,9 @@ export const selectUserStyles = (reduxState: ReduxState) =>
 export const selectPublicStylesWithRating = (reduxState: ReduxState) =>
   reduxState.recommendation.publicStylesRating;
 
+export const selectStyleLoading = (reduxState: ReduxState) =>
+  reduxState.recommendation.loading;
+
 export const selectTypePublicStyles = (type: string) => (
   reduxState: ReduxState
 ) => {

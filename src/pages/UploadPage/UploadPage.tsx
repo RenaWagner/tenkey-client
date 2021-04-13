@@ -15,7 +15,7 @@ export default function UploadPage() {
 
   const [data, setData] = useState({
     date: todaysDate,
-    temperature: "0",
+    temperature: "",
     comment: " ",
     rating: 0,
   });
@@ -58,7 +58,7 @@ export default function UploadPage() {
     dispatch(uploadStyle(data, url));
     setData({
       date: todaysDate,
-      temperature: "0",
+      temperature: "",
       comment: " ",
       rating: 0,
     });
@@ -79,7 +79,7 @@ export default function UploadPage() {
         <></>
       )}
       <Form className="mt-5 mb-3">
-        <Form.Label style={{ float: "left" }}>Upload the image: </Form.Label>
+        <Form.Label style={{ float: "left" }}>*Upload the image: </Form.Label>
         <Form.File
           type="file"
           name="file"
@@ -92,7 +92,7 @@ export default function UploadPage() {
       <Form onSubmit={uploadFile}>
         <Form.Row>
           <Form.Group as={Col} className="mb-3">
-            <Form.Label style={{ float: "left" }}>Date: </Form.Label>
+            <Form.Label style={{ float: "left" }}>*Date: </Form.Label>
             <Form.Control
               type="date"
               required
@@ -102,7 +102,7 @@ export default function UploadPage() {
           </Form.Group>
           <Form.Group as={Col} className="mb-3">
             <Form.Label style={{ float: "left" }}>
-              Feeling Temperature (°C):{" "}
+              *Temperature (°C):{" "}
             </Form.Label>
             <Form.Control
               type="number"
@@ -127,7 +127,7 @@ export default function UploadPage() {
           />
         </Form.Group>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <p>Rating: </p>
+          <p>*Rating: </p>
           <StarRatingComponent
             name="rating"
             starCount={5}
