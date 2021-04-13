@@ -4,7 +4,7 @@ import LocationButton from "../../components/LocationBtn/LocationBtn";
 import LocationInput from "../../components/LocationInput/LocationInput";
 import HomeImage from "../../assets/HomeImage.jpeg";
 
-export default function HomePage() {
+export default function WeatherPage() {
   return (
     <div>
       <div
@@ -29,10 +29,10 @@ export default function HomePage() {
                   className="font-weight-bold pl-3 pr-3"
                   style={{ fontSize: 80 }}
                 >
-                  Comfort Style
+                  Today's Weather
                 </h1>
                 <h2 className="mt-3 mb-5 pl-3 pr-3">
-                  Find the perfet style that matches the weather and temperature
+                  Find the weather by location
                 </h2>
                 <LocationButton />
                 <LocationInput />
