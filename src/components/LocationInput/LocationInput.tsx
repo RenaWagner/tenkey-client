@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import cities from "../../data/cities.json";
 import { Button, Col } from "react-bootstrap";
+import { useHistory } from "react-router";
 import { Form } from "react-bootstrap";
 import {
   fetchWeatherLocation,
@@ -26,6 +27,7 @@ export default function LocationInput() {
   // });
   const [city, setCity] = useState("");
   const [chosenCities, setChosenCities] = useState<Cities[]>([]);
+  const history = useHistory();
 
   const formSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,13 +37,6 @@ export default function LocationInput() {
 
     if (!cityNames.length) {
       alert("Cannot find the match with the typed city name");
-    } else if (cityNames.length === 1) {
-      const location = {
-        lattitude: cityNames[0].lat.toString(),
-        longtitude: cityNames[0].lon.toString(),
-      };
-      // setCurrentLocation(location);
-      dispatch(fetchWeatherLocation(location));
     } else {
       setChosenCities(cityNames);
     }
@@ -89,7 +84,7 @@ export default function LocationInput() {
                   setChosenCities([]);
                   setCity("");
                   dispatch(weatherLoading());
-                  dispatch(fetchWeatherLocation(location));
+                  dispatch(fetchWeatherLocation(location, history));
                 }}
               >
                 {city.country_code === "US" ? (

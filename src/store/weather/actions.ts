@@ -6,7 +6,8 @@ const API_URL = `https://api.weatherbit.io/v2.0`;
 const API_KEY = "05b74c16ea7a4df39d05d7bc4cb2ddf8";
 
 export const fetchWeatherLocation = (
-  currentLocation: LongLatLocation
+  currentLocation: LongLatLocation,
+  history: any
 ) => async (dispatch: Dispatch, getState: () => ReduxState) => {
   // console.log(currentLocation);
   try {
@@ -14,6 +15,7 @@ export const fetchWeatherLocation = (
       `${API_URL}/current/?lat=${currentLocation.lattitude}&lon=${currentLocation.longtitude}&key=${API_KEY}`
     );
     dispatch(fetchedWeatherData(res.data.data));
+    history.push("/style");
   } catch (e) {
     console.log(e.message);
   }

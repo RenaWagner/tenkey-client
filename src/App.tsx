@@ -17,6 +17,7 @@ import { selectMessage } from "./store/message/selectors";
 import ForecastStylePage from "./pages/ForecastStylePage/ForecastStylePage";
 import WeatherPage from "./pages/WeatherPage/WeatherPage";
 import ShowUserOutfitPage from "./pages/ShowUserOutfitPage/ShowUserOutfitPage";
+import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +32,8 @@ function App() {
       <NavBar />
       {message ? <Messages /> : <></>}
       <Switch>
-        <Route exact path="/" component={StylePage} />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/style" component={StylePage} />
         <Route exact path="/weather" component={WeatherPage} />
         <Route path="/forecast" component={ForecastPage} />
         <Route path="/login" component={LoginPage} />

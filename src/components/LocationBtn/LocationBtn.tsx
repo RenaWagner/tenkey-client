@@ -6,6 +6,7 @@ import {
   weatherLoading,
 } from "../../store/weather/actions";
 import { Link } from "react-scroll";
+import { useHistory } from "react-router";
 
 export default function LocationButton() {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ export default function LocationButton() {
     lattitude: "",
     longtitude: "",
   });
+  const history = useHistory();
 
   const clickedPlace = () => {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -24,8 +26,9 @@ export default function LocationButton() {
 
   useEffect(() => {
     if (currentLocation.lattitude && currentLocation.longtitude) {
-      dispatch(fetchWeatherLocation(currentLocation));
+      dispatch(fetchWeatherLocation(currentLocation, history));
     }
+    // eslint-disable-next-line
   }, [currentLocation, dispatch]);
 
   return (

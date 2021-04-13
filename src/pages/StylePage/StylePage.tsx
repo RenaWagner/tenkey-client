@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LocationButton from "../../components/LocationBtn/LocationBtn";
-import LocationInput from "../../components/LocationInput/LocationInput";
-import {
-  selectTodayWeather,
-  selectLoading,
-} from "../../store/weather/selectors";
+import { selectTodayWeather } from "../../store/weather/selectors";
 import {
   fetchPublicStyles,
   fetchUserStyle,
@@ -13,16 +8,13 @@ import {
 } from "../../store/recommendation/actions";
 import StyleCard from "../../components/StyleCard/StyleCard";
 import { selectUserToken } from "../../store/user/selectors";
-import { Spinner } from "react-bootstrap";
 import { showMessage } from "../../store/message/actions";
-import StyleImage from "../../assets/StyleImage.jpeg";
 
 export default function StylePage() {
   const weatherData = useSelector(selectTodayWeather);
   const todayWeather = useSelector(selectTodayWeather);
   const isLoggedIn = useSelector(selectUserToken);
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
 
   useEffect(() => {
     if (todayWeather[0]) {
@@ -56,56 +48,7 @@ export default function StylePage() {
           <StyleCard />
         </div>
       ) : (
-        <div>
-          <div
-            className="d-flex justify-content-center align-items-center"
-            style={{ height: 1000 }}
-          >
-            <div
-              className="p-5 text-center bg-image"
-              style={{
-                backgroundImage: `url(${StyleImage})`,
-                width: "100%",
-                height: 1000,
-              }}
-            >
-              <div className="d-flex justify-content-center align-items-center h-100">
-                <div
-                  className="mask p-5"
-                  style={{ backgroundColor: `rgba(211,211,211, 0.6)` }}
-                >
-                  <div className="text-white">
-                    <h1
-                      className="font-weight-bold pl-3 pr-3"
-                      style={{ fontSize: 80 }}
-                    >
-                      Comfort Outfit
-                    </h1>
-                    <h2 className="mt-3 mb-5 pl-3 pr-3">
-                      Find the perfet outfit that matches the weather and
-                      temperature
-                    </h2>
-                    <div className="text-white">
-                      <LocationButton />
-                      <LocationInput />
-                    </div>
-                    {isLoading ? (
-                      <Spinner
-                        animation="border"
-                        role="status"
-                        className="mt-5"
-                      >
-                        <span className="sr-only">Loading...</span>
-                      </Spinner>
-                    ) : (
-                      <></>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <></>
       )}
     </div>
   );

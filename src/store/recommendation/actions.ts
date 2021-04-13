@@ -179,7 +179,6 @@ export const updateRatingPublicStyle = (
           headers: { Authorization: `Bearer ${jwt}` },
         }
       );
-      console.log(response.data);
       dispatch(updatePublicStyle(response.data));
       dispatch(
         showMessage("success", false, "Successfully updated the rating!", 2000)
