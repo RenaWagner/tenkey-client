@@ -199,3 +199,37 @@ export const fetchedAllUserData = (data: UserUploadedStyles[]) => ({
   type: "user/allStyles",
   payload: data,
 });
+
+export const deleteStyles = (id: number) => {
+  return async (
+    dispatch: ThunkDispatch<ReduxState, void, any>,
+    getState: () => ReduxState
+  ) => {
+    const jwt: string = getState().user.token;
+    try {
+      const response = await axios.delete(
+        `${API_URL_STYLE}/user/original/${id}`,
+        {
+          headers: { Authorization: `Bearer ${jwt}` },
+        }
+      );
+      dispatch(deletingStyle(id));
+      dispatch(
+        showMessage("success", false, "Successfully deleted this outfit!", 2000)
+      );
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+    }
+  };
+};
+
+export const deletingStyle = (id: number) => ({
+  type: "user/deleteStyle",
+  payload: id,
+});

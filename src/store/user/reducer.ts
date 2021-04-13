@@ -45,6 +45,17 @@ export default function reducer(state = initialState, action: UserAction): any {
         styles: [...action.payload],
       };
     }
+    case "user/deleteStyle": {
+      const styleId = action.payload;
+      const updatedStyles = state.styles.filter((style) => {
+        return style.id !== styleId;
+      });
+      return {
+        ...state,
+        loading: false,
+        styles: [...updatedStyles],
+      };
+    }
     default: {
       return state;
     }
