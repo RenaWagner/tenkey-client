@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import tenkeyLogo from "../../logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserToken } from "../../store/user/selectors";
-import { Button, Dropdown, NavDropdown } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { logout } from "../../store/user/actions";
 import { PersonCircle } from "react-bootstrap-icons";
 
@@ -28,7 +28,7 @@ export default function NavBar() {
               to="/"
               exact
             >
-              Outfit
+              Today's Outfit
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
@@ -37,7 +37,7 @@ export default function NavBar() {
               as={NavLink}
               to="/weather"
             >
-              Weather
+              Today's Weather
             </Nav.Link>
           </Nav.Item>
           {isLoggedIn ? (
