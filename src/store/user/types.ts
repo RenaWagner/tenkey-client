@@ -12,6 +12,10 @@ export type UserAction =
   | {
       type: "user/updateProfile";
       payload: { userToUpdate: UserData };
+    }
+  | {
+      type: "user/allStyles";
+      payload: UserUploadedStyles[];
     };
 
 export type UserData = {
@@ -30,6 +34,20 @@ export type UserState = {
   loading: boolean;
   userInfo: UserData[];
   token: string;
+  styles: UserUploadedStyles[];
+};
+
+export type UserUploadedStyles = {
+  comment: string;
+  createdAt: string;
+  id: number;
+  imageUrl: string;
+  maxTemp: number;
+  minTemp: number;
+  rating: number;
+  updatedAt: string;
+  userId: number;
+  wearingDate: string;
 };
 
 export type UserInputData = {

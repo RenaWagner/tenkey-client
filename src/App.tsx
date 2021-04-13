@@ -16,6 +16,7 @@ import Messages from "./components/Messages/Messages";
 import { selectMessage } from "./store/message/selectors";
 import ForecastStylePage from "./pages/ForecastStylePage/ForecastStylePage";
 import WeatherPage from "./pages/WeatherPage/WeatherPage";
+import ShowUserOutfitPage from "./pages/ShowUserOutfitPage/ShowUserOutfitPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function App() {
         <Route path="/update/:type/:id" component={UpdateStylePage} />
         <Route path="/upload" component={UploadPage} />
         <Route exact path="/profile" component={ShowProfilePage} />
+        <Route exact path="/profile/style" component={ShowUserOutfitPage} />
         <Route path="/profile/update" component={ProfilePage} />
       </Switch>
     </div>

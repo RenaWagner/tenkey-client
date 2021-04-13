@@ -3,7 +3,12 @@ import { Dispatch } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 import { ReduxState } from "..";
 import { setMessage, showMessage } from "../message/actions";
-import { UpdateProfile, UserData, UserInputData } from "./types";
+import {
+  UpdateProfile,
+  UserData,
+  UserInputData,
+  UserUploadedStyles,
+} from "./types";
 const API_URL_STYLE = `https://tenkeyapp.herokuapp.com`;
 
 export const login = (email: string, password: string, history: any) => {
@@ -162,5 +167,35 @@ export const updateProfile = (data: UpdateProfile) => {
 
 export const updatedProfile = (data: UserData) => ({
   type: "user/updateProfile",
+  payload: data,
+});
+
+export const getAllUserStyles = () => {
+  return async (
+    dispatch: ThunkDispatch<ReduxState, void, any>,
+    getState: () => ReduxState
+  ) => {
+    dispatch(userLoading());
+    const jwt: string = getState().user.token;
+    try {
+      const response = await axios.get(`${API_URL_STYLE}/user/original/`, {
+        headers: { Authorization: `Bearer ${jwt}` },
+      });
+      dispatch(fetchedAllUserData(response.data));
+      // console.log(response.data);
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+    }
+  };
+};
+
+export const fetchedAllUserData = (data: UserUploadedStyles[]) => ({
+  type: "user/allStyles",
   payload: data,
 });

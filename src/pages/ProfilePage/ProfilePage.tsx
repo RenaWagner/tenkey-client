@@ -2,13 +2,15 @@ import React, { FormEvent, useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { updateProfile } from "../../store/user/actions";
-import { selectUserToken } from "../../store/user/selectors";
+import { selectUser, selectUserToken } from "../../store/user/selectors";
 
 export default function ProfilePage() {
+  const userData = useSelector(selectUser);
   const [data, setData] = useState({
-    type: "",
-    sensitiveness: "",
+    type: userData.clothingType || " ",
+    sensitiveness: userData.sensitiveness || " ",
   });
   const dispatch = useDispatch();
   const history = useHistory();
@@ -61,9 +63,14 @@ export default function ProfilePage() {
             <option value="cold">I'm sensitive to cold</option>
           </Form.Control>
         </Form.Group>
-        <Button type="submit" variant="primary" className="mt-4">
+        <Button type="submit" variant="success" className="mt-4">
           Update
         </Button>
+        <Link to="/profile">
+          <Button variant="secondary" className="ml-5 mt-4">
+            Cancel
+          </Button>
+        </Link>
       </Form>
     </div>
   );
