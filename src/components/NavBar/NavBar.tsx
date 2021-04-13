@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import tenkeyLogo from "../../logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserToken } from "../../store/user/selectors";
-import { Button } from "react-bootstrap";
+import { Button, Dropdown, NavDropdown } from "react-bootstrap";
 import { logout } from "../../store/user/actions";
 import { PersonCircle } from "react-bootstrap-icons";
 
@@ -58,9 +58,9 @@ export default function NavBar() {
               <Nav.Link
                 activeStyle={{ fontWeight: "bold" }}
                 as={NavLink}
-                to="/profile"
+                to="/profile/style"
               >
-                <PersonCircle color="black" size={32} />
+                All Uploaded Styles
               </Nav.Link>
             </Nav.Item>
           ) : (
@@ -71,9 +71,9 @@ export default function NavBar() {
               <Nav.Link
                 activeStyle={{ fontWeight: "bold" }}
                 as={NavLink}
-                to="/profile/style"
+                to="/profile"
               >
-                Show all styles
+                <PersonCircle color="black" size={32} />
               </Nav.Link>
             </Nav.Item>
           ) : (
