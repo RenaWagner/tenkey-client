@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import "./App.css";
 import { Route, Switch } from "react-router";
 import NavBar from "./components/NavBar/NavBar";
-import HomePage from "./pages/HomePage/HomePage";
 import ForecastPage from "./pages/ForecastPage/ForecastPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
@@ -16,6 +15,7 @@ import { bootstrapLoginState } from "./store/user/actions";
 import Messages from "./components/Messages/Messages";
 import { selectMessage } from "./store/message/selectors";
 import ForecastStylePage from "./pages/ForecastStylePage/ForecastStylePage";
+import WeatherPage from "./pages/WeatherPage/WeatherPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,11 +30,11 @@ function App() {
       <NavBar />
       {message ? <Messages /> : <></>}
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" component={StylePage} />
+        <Route exact path="/weather" component={WeatherPage} />
         <Route path="/forecast" component={ForecastPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignupPage} />
-        <Route exact path="/style" component={StylePage} />
         <Route path="/style/:date" component={ForecastStylePage} />
         <Route path="/update/:type/:id" component={UpdateStylePage} />
         <Route path="/upload" component={UploadPage} />

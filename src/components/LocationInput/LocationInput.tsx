@@ -57,13 +57,13 @@ export default function LocationInput() {
         <Form.Row>
           <Col sm={8}>
             <Form.Label htmlFor="inlineFormInput" srOnly>
-              Search by the city name:
+              Search for location
             </Form.Label>
             <Form.Control
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              placeholder="Find the weather"
+              placeholder=" Search for location"
             />
           </Col>
           <Col xs="auto">

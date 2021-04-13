@@ -28,16 +28,16 @@ export default function NavBar() {
               to="/"
               exact
             >
-              Today's Weather
+              Outfit
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link
               activeStyle={{ fontWeight: "bold" }}
               as={NavLink}
-              to="/style"
+              to="/weather"
             >
-              Today's Style
+              Weather
             </Nav.Link>
           </Nav.Item>
           {isLoggedIn ? (
