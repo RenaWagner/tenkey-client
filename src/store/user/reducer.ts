@@ -4,6 +4,7 @@ const initialState: UserState = {
   loading: false,
   userInfo: [],
   token: "",
+  styles: [],
 };
 
 export default function reducer(state = initialState, action: UserAction): any {
@@ -35,6 +36,13 @@ export default function reducer(state = initialState, action: UserAction): any {
         ...state,
         loading: false,
         userInfo: action.payload.userToUpdate,
+      };
+    }
+    case "user/allStyles": {
+      return {
+        ...state,
+        loading: false,
+        styles: [...action.payload],
       };
     }
     default: {

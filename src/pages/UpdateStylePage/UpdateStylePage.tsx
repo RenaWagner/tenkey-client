@@ -12,7 +12,10 @@ import {
   selectPublicStyleWithId,
   selectUserStyleWithId,
 } from "../../store/recommendation/selectors";
-import { selectUserToken } from "../../store/user/selectors";
+import {
+  selectUserAllWithId,
+  selectUserToken,
+} from "../../store/user/selectors";
 
 type Params = {
   type: string;
@@ -25,6 +28,8 @@ export default function UpdateStylePage() {
   const type = route_params.type; //user or public
   const id = parseInt(route_params.id); //user's id or public's id
   const userTypeStyle = useSelector(selectUserStyleWithId(id)); //type === user
+  const userAllIdStyle = useSelector(selectUserAllWithId(id));
+  const userStyle = userTypeStyle ? userTypeStyle : userAllIdStyle;
   const publicTypeStyle = useSelector(selectPublicStyleWithId(id));
   const baseRating =
     publicTypeStyle && publicTypeStyle.users
@@ -59,10 +64,10 @@ export default function UpdateStylePage() {
   return (
     <div className="mx-auto w-75" style={{ maxWidth: 400 }}>
       <h3 className="mt-3 mb-3">Update the style</h3>
-      {type === "user" && userTypeStyle ? (
+      {type === "user" && userStyle ? (
         <div>
           <img
-            src={userTypeStyle.imageUrl}
+            src={userStyle.imageUrl}
             alt="style preview"
             className="mx-auto w-75 mb-4"
             style={{ maxWidth: 400 }}
