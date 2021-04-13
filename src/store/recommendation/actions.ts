@@ -90,6 +90,7 @@ export const updateRatingUserStyle = (
     dispatch(recommendationLoading());
     try {
       const jwt: string = getState().user.token;
+      console.log(jwt);
       const response = await axios.patch(
         `${API_URL_STYLE}/user/original/${id}`,
         {

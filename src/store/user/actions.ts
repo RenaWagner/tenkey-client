@@ -177,7 +177,6 @@ export const getAllUserStyles = () => {
   ) => {
     dispatch(userLoading());
     const jwt: string = getState().user.token;
-    console.log("jwt", jwt);
     try {
       const response = await axios.get(`${API_URL_STYLE}/user/original/`, {
         headers: { Authorization: `Bearer ${jwt}` },
