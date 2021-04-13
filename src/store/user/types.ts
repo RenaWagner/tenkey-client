@@ -16,6 +16,10 @@ export type UserAction =
   | {
       type: "user/allStyles";
       payload: UserUploadedStyles[];
+    }
+  | {
+      type: "user/deleteStyle";
+      payload: number;
     };
 
 export type UserData = {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -7,6 +7,7 @@ import {
   selectTypePublicStyles,
   selectUserStyles,
   selectPublicStylesWithRating,
+  selectStyleLoading,
 } from "../../store/recommendation/selectors";
 import { selectUserToken } from "../../store/user/selectors";
 import PublicStyleCarousel from "../PublicStyleCarousel/PublicStyleCarousel";
@@ -19,9 +20,11 @@ export default function StyleCard() {
   const userStyles = useSelector(selectUserStyles);
   const isLoggedIn = useSelector(selectUserToken);
   const publicStyleWithRating = useSelector(selectPublicStylesWithRating);
+  const isLoading = useSelector(selectStyleLoading);
 
   return (
     <div>
+      {isLoading ? <Spinner animation="border"></Spinner> : <></>}
       {isLoggedIn ? (
         <div>
           {userStyles.length ? (

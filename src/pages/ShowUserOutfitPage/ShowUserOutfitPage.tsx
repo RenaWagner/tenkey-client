@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import StarRatingComponent from "react-star-rating-component";
-import { getAllUserStyles } from "../../store/user/actions";
+import { deleteStyles, getAllUserStyles } from "../../store/user/actions";
 import {
   selectUserAllStyles,
   selectUserToken,
@@ -27,7 +27,7 @@ export default function ShowUserOutfitPage() {
   }, [dispatch]);
 
   const userAllStyles = useSelector(selectUserAllStyles);
-  console.log(userAllStyles);
+
   return (
     <div className="mx-auto w-75" style={{ maxWidth: 400 }}>
       <h3 className="mt-4 mb-5">Your Uploaded Styles</h3>
@@ -62,8 +62,19 @@ export default function ShowUserOutfitPage() {
                   {style.hasOwnProperty("comment") ? style.comment : <></>}
                   <br></br>
                   <Link to={`/update/user/${style.id}`}>
-                    <Button variant="danger">Update this style</Button>
+                    <Button className="mt-2" variant="danger">
+                      Update this style
+                    </Button>
                   </Link>
+                  <Button
+                    className="mt-2"
+                    variant="secondary"
+                    onClick={() => {
+                      dispatch(deleteStyles(style.id));
+                    }}
+                  >
+                    Delete this style
+                  </Button>
                 </Carousel.Caption>
               </Carousel.Item>
             );
