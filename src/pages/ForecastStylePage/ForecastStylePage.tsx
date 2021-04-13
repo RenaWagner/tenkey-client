@@ -39,7 +39,7 @@ export default function ForecastStylePage() {
             "warning",
             false,
             "It might rain on this day! Don't forget an umbrella or rain jacket!",
-            100000
+            5000
           )
         );
       }
