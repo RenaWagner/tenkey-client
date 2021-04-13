@@ -39,7 +39,7 @@ export default function LocationButton() {
             clickedPlace();
           }}
         >
-          Check weather at my location
+          Current location
         </Button>
       </Link>
     </div>
