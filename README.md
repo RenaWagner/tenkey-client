@@ -1,6 +1,7 @@
-# TENKEY
+# Tenkey
 
 _Have you ever felt that you are not sure what to wear today?_
+
 _Have you ever experienced that you wore similar outfits as a day before since the temperature was the same, but actually you felt too cold or too hot?_
 
 TEHNKEY is an app where users can check matching recommendations on
