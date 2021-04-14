@@ -30,7 +30,7 @@ export default function ShowUserOutfitPage() {
 
   return (
     <div className="mx-auto w-75" style={{ maxWidth: 400 }}>
-      <h3 className="mt-4 mb-5">Your Uploaded Styles</h3>
+      <h3 className="mt-4 mb-5">Your Uploaded Outfits</h3>
       <div
         style={{ maxWidth: "100%" }}
         className="mt-2 d-flex justify-content-center align-items-center"
