@@ -39,8 +39,8 @@ export default function HomePage() {
                   temperature
                 </h2>
                 <div className="text-white">
-                  <LocationButton />
-                  <LocationInput />
+                  <LocationButton type="style" />
+                  <LocationInput type="style" />
                 </div>
                 {isLoading ? (
                   <Spinner animation="border" role="status" className="mt-5">

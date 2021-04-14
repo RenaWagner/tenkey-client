@@ -8,7 +8,12 @@ import {
 import { Link } from "react-scroll";
 import { useHistory } from "react-router";
 
-export default function LocationButton() {
+type Props = {
+  type: string;
+};
+
+export default function LocationButton(props: Props) {
+  const type = props.type;
   const dispatch = useDispatch();
   const [currentLocation, setCurrentLocation] = useState({
     lattitude: "",
@@ -26,7 +31,7 @@ export default function LocationButton() {
 
   useEffect(() => {
     if (currentLocation.lattitude && currentLocation.longtitude) {
-      dispatch(fetchWeatherLocation(currentLocation, history));
+      dispatch(fetchWeatherLocation(currentLocation, history, type));
     }
     // eslint-disable-next-line
   }, [currentLocation, dispatch]);

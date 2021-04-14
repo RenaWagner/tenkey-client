@@ -34,8 +34,8 @@ export default function WeatherPage() {
                 <h2 className="mt-3 mb-5 pl-3 pr-3">
                   Find the weather by location
                 </h2>
-                <LocationButton />
-                <LocationInput />
+                <LocationButton type="weather" />
+                <LocationInput type="weather" />
               </div>
             </div>
           </div>
