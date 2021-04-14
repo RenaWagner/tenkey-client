@@ -7,7 +7,8 @@ const API_KEY = "05b74c16ea7a4df39d05d7bc4cb2ddf8";
 
 export const fetchWeatherLocation = (
   currentLocation: LongLatLocation,
-  history: any
+  history: any,
+  type: string
 ) => async (dispatch: Dispatch, getState: () => ReduxState) => {
   // console.log(currentLocation);
   try {
@@ -15,7 +16,9 @@ export const fetchWeatherLocation = (
       `${API_URL}/current/?lat=${currentLocation.lattitude}&lon=${currentLocation.longtitude}&key=${API_KEY}`
     );
     dispatch(fetchedWeatherData(res.data.data));
-    history.push("/style");
+    if (type === "style") {
+      history.push("/style");
+    }
   } catch (e) {
     console.log(e.message);
   }

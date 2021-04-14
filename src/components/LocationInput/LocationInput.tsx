@@ -19,12 +19,12 @@ type Cities = {
   lon: number;
 };
 
-export default function LocationInput() {
+type Props = {
+  type: string;
+};
+export default function LocationInput(props: Props) {
+  const type = props.type;
   const dispatch = useDispatch();
-  // const [currentLocation, setCurrentLocation] = useState({
-  //   lattitude: "",
-  //   longtitude: "",
-  // });
   const [city, setCity] = useState("");
   const [chosenCities, setChosenCities] = useState<Cities[]>([]);
   const history = useHistory();
@@ -84,7 +84,7 @@ export default function LocationInput() {
                   setChosenCities([]);
                   setCity("");
                   dispatch(weatherLoading());
-                  dispatch(fetchWeatherLocation(location, history));
+                  dispatch(fetchWeatherLocation(location, history, type));
                 }}
               >
                 {city.country_code === "US" ? (

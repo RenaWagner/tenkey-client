@@ -67,7 +67,7 @@ export default function WeatherToday() {
               </ListGroup>
               <Link to="/forecast">
                 <Button className="mt-4" variant="success">
-                  Weather forecast
+                  Next days' weather forecast
                 </Button>
               </Link>
             </Card.Body>
