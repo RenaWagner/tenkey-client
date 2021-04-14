@@ -1,19 +1,19 @@
 # Tenkey
 
-_Have you ever felt that you are not sure what to wear today?_
+_ :thinking: Have you ever felt that you are not sure what to wear today?_
 
-_Have you ever experienced that you wore similar outfits as a day before since the temperature was the same, but actually you felt too cold or too hot?_
+_ :hand_over_mouth: Have you ever experienced that you wore similar outfits as a day before since the temperature was the same, but actually you felt too cold or too hot?_
 
 TEHNKEY is an app where users can check matching recommendations on
 clothing outfits based on weather condition. Users can also upload their style images so they can reference their own style in the future under same weather conditions.
 
-I am currently working on a mobile app version with React Native.
+I am currently working on a mobile app version with React Native :iphone:.
 
 Here you can watch [Demo]()
 
 Here you can check the [live version](https://tenkey.netlify.app/)
 
-## Technologies and concepts
+## Technologies and concepts :computer:
 
 - TypeScript (Frontend)
 - JavaScript (Backend)
@@ -27,7 +27,7 @@ Here you can check the [live version](https://tenkey.netlify.app/)
 - Many-to-many models
 - Bootstrap
 
-## Goals for this project
+## Goals for this project :tada:
 
 The goal of this project is to build fullstack app, practicing and learning new technologies. I learnt these new tools on my own by reading documentation, reading articles and watching tutorials.
 
@@ -42,7 +42,7 @@ The goal of this project is to build fullstack app, practicing and learning new 
   - use project board
   - use git flow
 
-## User story
+## User story :tipping_hand_woman:
 
 ### As a public user
 
