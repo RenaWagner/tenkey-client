@@ -1,46 +1,79 @@
-# Getting Started with Create React App
+# TENKEY
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+_Have you ever felt that you are not sure what to wear today?_
+_Have you ever experienced that you wore similar outfits as a day before since the temperature was the same, but actually you felt too cold or too hot?_
 
-## Available Scripts
+TEHNKEY is an app where users can check matching recommendations on
+clothing outfits based on weather condition. Users can also upload their style images so they can reference their own style in the future under same weather conditions.
 
-In the project directory, you can run:
+I am currently working on a mobile app version with React Native.
 
-### `npm start`
+Here you can watch [Demo]()
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Here you can check the [live version](https://tenkey.netlify.app/)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies and concepts
 
-### `npm test`
+- TypeScript (Frontend)
+- JavaScript (Backend)
+- React
+- Redux
+- Express
+- REST API
+- Sequelize as ORM
+- PostgreSQL
+- One-to-many models
+- Many-to-many models
+- Bootstrap
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Goals for this project
 
-### `npm run build`
+The goal of this project is to build fullstack app, practicing and learning new technologies. I learnt these new tools on my own by reading documentation, reading articles and watching tutorials.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- practice full-stack app development
+- build a working prototype in 9 days
+- apply skills which we learnt during Codaisseur bootcamp
+- explore new technology single-handedly
+- showcase and document development skills using:
+  - make a wireframe
+  - design a data model
+  - write user stories
+  - use project board
+  - use git flow
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## User story
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### As a public user
 
-### `npm run eject`
+- I want to check the outfits that matches the feeling temperature of today / other date.
+- I want to check the weather and forecast.
+- I want to be able to create an account.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### As a logged-in user
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- I want to see user specific outfits & general recommended outfits that matches the feeling temperature of today / other date based on my profile setting (clothing type & sensitivity).
+- I want to upload my own outfits and keep the record of what I wear on what kind of temperature.
+- I want to update my own outfits.
+- I want to rate the general recommended outfits.
+- I want to see my profile setting.
+- I want to update my profile setting.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## External WeatherAPI
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+I used a [Weatherbit.io](https://www.weatherbit.io/) to get weather data.
 
-## Learn More
+## Project board (Frontend)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Go to [Project board](https://github.com/RenaWagner/tenkey-client/projects/1)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Wireframe
+
+Go to [wireframe](https://wireframepro.mockflow.com/view/Ma7e3869bfb80383dc5ed1d0fc57660501617968583426).
+
+## Database model
+
+Go to [Database model](https://dbdiagram.io/d/60634435ecb54e10c33dfaa7)
+
+## Backend server repo
+
+Go to [Backend server repo](https://github.com/RenaWagner/tenkey-server)
