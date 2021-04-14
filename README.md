@@ -2,16 +2,16 @@
 
 :thinking: _Have you ever felt that you are not sure what to wear today?_
 
-:hand*over_mouth: \_Have you ever experienced that you wore similar outfits as a day before since the temperature was the same, but actually you felt too cold or too hot?*
+:sneezing_face: _Have you ever experienced that you wore similar outfits as a day before since the temperature was the same, but actually you felt too cold or too hot?_
 
 TENKEY is an app where users can check matching recommendations on
 clothing outfits based on the weather condition. Users can also upload their style images so they can reference their own style in the future under the same weather conditions.
 
 I am currently working on a mobile app version with React Native :calling:.
 
-Here you can watch [Demo]()
+Here you can watch [Demo]() :eyes:
 
-Here you can check the [live version](https://tenkey.netlify.app/)
+Here you can check the [live version](https://tenkey.netlify.app/) :technologist:
 
 ## Technologies and concepts :computer:
 
