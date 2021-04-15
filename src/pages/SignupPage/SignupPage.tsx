@@ -79,13 +79,14 @@ export default function SignupPage() {
             value={data.type}
             onChange={(e) => setData({ ...data, type: e.target.value })}
           >
+            <option value="">Choose...</option>
             <option value="female">Female</option>
             <option value="male">Male</option>
           </Form.Control>
         </Form.Group>
         <Form.Group>
           <Form.Label style={{ float: "left" }}>
-            Choose sensitiveness:
+            Choose sensitivity:
           </Form.Label>
           <Form.Control
             as="select"
@@ -94,9 +95,10 @@ export default function SignupPage() {
               setData({ ...data, sensitiveness: e.target.value })
             }
           >
-            <option value="none">Not sensitive</option>
-            <option value="heat">Sensitive to Heat</option>
-            <option value="cold">Sensitive to Cold</option>
+          <option value="">Choose...</option>
+            <option value="none">I'm not sensitive to heat/cold</option>
+            <option value="heat">I'm sensitive to heat</option>
+            <option value="cold">I'm sensitive to cold</option>
           </Form.Control>
         </Form.Group>
         <Link to="/login">
