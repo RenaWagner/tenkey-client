@@ -63,7 +63,7 @@ export default function ShowUserOutfitPage() {
                   <br></br>
                   <Link to={`/update/user/${style.id}`}>
                     <Button className="mt-2" variant="danger">
-                      Update this style
+                      Update this outfit
                     </Button>
                   </Link>
                   <Button
@@ -73,7 +73,7 @@ export default function ShowUserOutfitPage() {
                       dispatch(deleteStyles(style.id));
                     }}
                   >
-                    Delete this style
+                    Delete this outfit
                   </Button>
                 </Carousel.Caption>
               </Carousel.Item>
