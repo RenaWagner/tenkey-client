@@ -60,7 +60,7 @@ export default function NavBar() {
                 as={NavLink}
                 to="/profile/style"
               >
-                All Uploaded Styles
+                All Uploaded Outfits
               </Nav.Link>
             </Nav.Item>
           ) : (

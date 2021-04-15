@@ -86,7 +86,7 @@ export default function UserStyleCarousel(props: Props) {
                 <br></br>
                 {dataType === "user" ? (
                   <Link to={`/update/${props.type}/${style.id}`}>
-                    <Button variant="danger">Update this style</Button>
+                    <Button variant="danger">Update this outfit</Button>
                   </Link>
                 ) : (
                   <></>

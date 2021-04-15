@@ -63,7 +63,7 @@ export default function UpdateStylePage() {
 
   return (
     <div className="mx-auto w-75" style={{ maxWidth: 400 }}>
-      <h3 className="mt-3 mb-3">Update the style</h3>
+      <h3 className="mt-3 mb-3">Update the outfit</h3>
       {type === "user" && userStyle ? (
         <div>
           <img
