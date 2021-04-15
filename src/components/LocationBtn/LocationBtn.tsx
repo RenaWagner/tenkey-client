@@ -21,12 +21,23 @@ export default function LocationButton(props: Props) {
   });
   const history = useHistory();
 
+  function success(position: any) {
+    const lat = position.coords.latitude.toFixed(3);
+    const long = position.coords.longitude.toFixed(3);
+    setCurrentLocation({ lattitude: lat, longtitude: long });
+  }
+  function error(err: any) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 30000,
+    maximumAge: Infinity,
+  };
+
   const clickedPlace = () => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      const lat = position.coords.latitude.toFixed(3);
-      const long = position.coords.longitude.toFixed(3);
-      setCurrentLocation({ lattitude: lat, longtitude: long });
-    });
+    console.log("clicked");
+    navigator.geolocation.getCurrentPosition(success, error, options);
   };
 
   useEffect(() => {
