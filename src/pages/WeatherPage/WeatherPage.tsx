@@ -9,14 +9,14 @@ export default function WeatherPage() {
     <div>
       <div
         className="d-flex justify-content-center align-items-center"
-        style={{ height: 1000 }}
+        style={{ height: 900 }}
       >
         <div
           className="p-5 text-center bg-image"
           style={{
             backgroundImage: `url(${HomeImage})`,
             width: "100%",
-            height: 1000,
+            height: 900,
           }}
         >
           <div className="d-flex justify-content-center align-items-center h-100">
@@ -32,7 +32,7 @@ export default function WeatherPage() {
                   Today's Weather
                 </h1>
                 <h2 className="mt-3 mb-5 pl-3 pr-3">
-                  Find the weather by location
+                  Find the weather by your preferred location
                 </h2>
                 <LocationButton type="weather" />
                 <LocationInput type="weather" />

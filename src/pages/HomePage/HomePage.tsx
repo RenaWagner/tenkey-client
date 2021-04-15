@@ -9,17 +9,16 @@ import StyleImage from "../../assets/StyleImage.jpeg";
 export default function HomePage() {
   const isLoading = useSelector(selectLoading);
   return (
-    <div>
       <div
         className="d-flex justify-content-center align-items-center"
-        style={{ height: 1000 }}
+        style={{ height: 900 }}
       >
         <div
           className="p-5 text-center bg-image"
           style={{
             backgroundImage: `url(${StyleImage})`,
             width: "100%",
-            height: 1000,
+            height: 900,
           }}
         >
           <div className="d-flex justify-content-center align-items-center h-100">
@@ -54,6 +53,5 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
