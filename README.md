@@ -23,6 +23,7 @@ Here you can check the [live version](https://tenkey.netlify.app/) :technologist
 - REST API
 - Sequelize as ORM
 - PostgreSQL
+- Recharts (Forecast page)
 - One-to-many models
 - Many-to-many models
 - Bootstrap
